@@ -1,0 +1,9 @@
+{
+  "name": "sanghai-twist",
+  "version": "1.0.0",
+  "description": "dress matching app",
+  "main": "index.js",
+  "repository": "https://github.com/rkdgusrn1212/sanghai_twist",
+  "author": "rkdgusrn1212 <khgkjg12@naver.com>",
+  "license": "MIT"
+}
