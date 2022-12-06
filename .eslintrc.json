@@ -15,7 +15,7 @@
     "ecmaVersion": "latest"
   },
   "rules": {
-    "no-unused-vars":"warn",//안 사용하는 변수에 대한 경고 생성
-    "no-console":"off"//console.log에 대한 경고 없엠.
+    "no-unused-vars": "warn", //안 사용하는 변수에 대한 경고 생성
+    "no-console": "off" //console.log에 대한 경고 없엠.
   }
 }
