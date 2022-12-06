@@ -1,0 +1,21 @@
+{
+  "env": {
+    "node": true,
+    "commonjs": true,
+    "es2021": true
+  },
+  "extends": ["eslint:recommended", "prettier"],
+  "overrides": [],
+  "globals": {
+    //선언되지 않은 전역변수를 사용하는 경우 ESLint 경고가 발생하지 않도록, globals를 이용하여 사용자 전역 변수를 추가
+    "Atomics": "readonly", //eslint에 기본적으로 포함 안되어있음, Atomics 객체는 atomic 작업을 정적 메서드로 제공
+    "SharedArrayBuffer": "readonly" //eslint에 기본적으로 포함 안되어있음, SharedArrayBuffer 객체는 제네릭, 고정된 길이의 원시 바이너리 데이터 버퍼를 표현
+  },
+  "parserOptions": {
+    "ecmaVersion": "latest"
+  },
+  "rules": {
+    "no-unused-vars":"warn",//안 사용하는 변수에 대한 경고 생성
+    "no-console":"off"//console.log에 대한 경고 없엠.
+  }
+}
