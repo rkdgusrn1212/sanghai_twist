@@ -1,1 +1,7 @@
 node_modules
+
+# log 파일들 제외
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
