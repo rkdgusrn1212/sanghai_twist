@@ -1,1 +1,11 @@
-node_modules
+# 현재 경로의 node_modules 폴더만 제외, end slash 없에면 동일이름의 파일도 제외됨.
+/node_modules/
+
+# log 파일들 제외
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+#config의 보안성 파일들 제외
+/config/
