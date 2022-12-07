@@ -2,4 +2,7 @@
 /* @rkdgusrn1212
 
 # 리엑트 프로젝트 설정 파일 소유
-/react-front-app/*
+/react-front-app/* @rkdgusrn1212
+
+# 루트 정의 파일들 소유
+/routes/ @rkdgusrn1212
