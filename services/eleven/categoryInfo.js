@@ -4,14 +4,14 @@ const iconv = require('iconv-lite');
 const apiKey = require('../../config/apiKey.json');
 
 /**
- * cat은 카테고리코드이다.
+ * code 카테고리코드이다.
  * sortCd(CP:인기, A: 판매순, G:평가높은순, I:후기/리뷰순, L:낮은 가격순, H:높은 가격순, N: 최근 등록순),
- * @param {cat, pg, srt} query 
+ * @param {code, pg, srt} query 
  * @returns 완성된 요청 url
  */
 const getApiRequest = (query) => {
   let url = `http://openapi.11st.co.kr/openapi/OpenApiService.tmall?key=${apiKey.key}&apiCode=CategoryInfo&pageSize=12&option=Products`;
-  if (query.cat) url += `&categoryCode=${query.cat}`;
+  if (query.code) url += `&categoryCode=${query.code}`;
   if (query.pg) url += `&pageNum=${query.pg}`;
   if (query.srt) url += `&sortCd=${query.srt}`;
   return url;
