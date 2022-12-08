@@ -6,3 +6,6 @@
 
 # 루트 정의 파일들 소유
 /routes/ @rkdgusrn1212
+
+# 서비스 파일들 소유
+/services/ @rkdgusrn1212
