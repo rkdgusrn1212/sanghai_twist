@@ -10,12 +10,12 @@ module.exports = async () => {
     return null;
   }
   let selected = [];
-  for(let cat of result.categories){
-    if(cat.name.includes("의류")||cat.name.includes("패션")){
-      selected.push(({
-        name : cat.name,
-        code : cat.url.slice(cat.url.indexOf("dispCtgrNo=")+11)//code가 despCtgtNo=뒤에옴
-      }));
+  for (let cat of result.categories) {
+    if (cat.name.includes('의류') || cat.name.includes('패션')) {
+      selected.push({
+        name: cat.name,
+        code: cat.url.slice(cat.url.indexOf('dispCtgrNo=') + 11), //code가 despCtgtNo=뒤에옴
+      });
     }
   }
   return selected;
