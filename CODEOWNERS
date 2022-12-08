@@ -1,7 +1,7 @@
 # 루트 디렉토리(서브 디렉토리 제외)에 있는 모든 파일 소유
 /* @rkdgusrn1212
 
-# 리엑트 프로젝트 설정 파일 소유
+# 리엑트 프로젝트 설정 및 루트 파일 소유
 /react-front-app/* @rkdgusrn1212
 
 # 루트 정의 파일들 소유
@@ -9,3 +9,6 @@
 
 # 서비스 파일들 소유
 /services/ @rkdgusrn1212
+
+# HomePage.js 파일 소유
+HomePage.js @rkdgusrn1212
