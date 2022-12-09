@@ -9,3 +9,5 @@ yarn-error.log*
 
 #config의 보안성 파일들 제외
 /config/
+package-lock.json
+react-front-app/package-lock.json
