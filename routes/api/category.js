@@ -10,8 +10,7 @@ router.get('/', async (req, res) => {
 router.get('/:code', async (req, res) => {
   res.json(
     await categoryInfo({
-      pg: req.query.pg,
-      srt: req.query.srt,
+      ...req.query,
       code: req.params.code,
     }),
   );
