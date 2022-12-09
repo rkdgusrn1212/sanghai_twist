@@ -45,7 +45,7 @@ const Home = () => {
         });
       })
       .catch((e) => console.log(e));
-  }, []);
+  }, [setBannerImgs]);
 
   return (
     <>
