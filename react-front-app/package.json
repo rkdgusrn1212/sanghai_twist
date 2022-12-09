@@ -1,5 +1,5 @@
 {
-  "homepage":"stwist",
+  "homepage": "stwist",
   "name": "react-front-app",
   "version": "0.1.0",
   "private": true,
@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^13.2.1",
     "axios": "^1.2.1",
     "react": "^18.2.0",
+    "react-cropper": "^2.1.8",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.0"
