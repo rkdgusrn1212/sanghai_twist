@@ -39,7 +39,7 @@ module.exports = async (query) => {
       products: {
         count: result.CategoryResponse.Products.TotalCount._text,
         items:
-          result.CategoryResponse.Products.Product &&
+          result.CategoryResponse.Products.Product ?
           (result.CategoryResponse.Products.Product.map
             ? result.CategoryResponse.Products.Product.map((prod) => ({
                 code: prod.ProductCode._text,
@@ -47,7 +47,7 @@ module.exports = async (query) => {
                 price: prod.ProductPrice._text,
                 image: prod.ProductImage300._cdata,
               }))
-            : {
+            : [{
                 code: result.CategoryResponse.Products.Product.ProductCode
                   ._text,
                 name: result.CategoryResponse.Products.Product.ProductName
@@ -57,7 +57,7 @@ module.exports = async (query) => {
                 image:
                   result.CategoryResponse.Products.Product.ProductImage300
                     ._cdata,
-              }),
+              }]):[],
       },
       category: {
         name: result.CategoryResponse.Category.CategoryName._cdata,

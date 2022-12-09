@@ -6,6 +6,16 @@ import { useState, useEffect } from 'react';
 
 const IMG_PER_BANNER = 3; //배너 하나당 포함되는 사진 수
 
+const findLeafCat = (category, leafList)=>{
+  if(category.child){
+    for(let sub of category.child){
+      findLeafCat(sub, leafList);
+    }
+  }else{
+    leafList.push(category);
+  }
+}
+
 const Home = () => {
   const [bannerImgs, setBannerImgs] = new useState([]);
 
@@ -16,31 +26,32 @@ const Home = () => {
       responseType: 'json',
     })
       .then((res) => {
-        let images = [];
-        let catList = res.data.categories;
+        let banners = [];
+        let catList = [];
+        for(let sub of res.data.categories){
+          findLeafCat(sub, catList);
+        }
+        console.log(catList);
         Promise.all(
           catList.map((cat) =>
             axios({
               method: 'get',
-              url: `http://192.168.0.115:8080/stwist-api/category/${cat.code}`,
+              url: `http://192.168.0.115:8080/stwist-api/category/${cat.code}?size=${IMG_PER_BANNER}&srt=I`,
               responseType: 'json',
             }).then((res) => {
-              const items = res.data.products.items;
-              items&&items.map((item) => images.push(item.image));
+              const category = res.data.category;
+              const banner = {
+                name : category.name,
+                code : category.code,
+                image : res.data.products.items.map((item) => item.image)
+              };
+              if(banner.image.length>=IMG_PER_BANNER){
+                banners.push(banner);
+              }
             }),//items가 없는 카테고리도 있음, BANNER를 꽉 체울 크기인 것들만 집어넣음.
           ),
         ).then(() => {
-          const len = images.length;//3개 안되는 이미지는 배너로 안씀.
-          const bannerCnt = Math.floor(len / IMG_PER_BANNER);
-          let banners = new Array(bannerCnt);
-          for (let bIdx = 0; bIdx < bannerCnt; bIdx++) {
-            const inBanner = new Array(IMG_PER_BANNER);
-            let baseIdx = bIdx*IMG_PER_BANNER;
-            for(let iIdx=0; iIdx<IMG_PER_BANNER; iIdx++){
-              inBanner.push(images[baseIdx++]);
-            }
-            banners[bIdx] = inBanner;
-          }
+          console.log(banners);
           setBannerImgs(banners);
         });
       })
@@ -55,7 +66,7 @@ const Home = () => {
         {bannerImgs.map((imgs, i) => (
           <Carousel.Item key={i}>
             <div className="d-flex justify-content-center w-100">
-              {imgs.map((img, i) => (
+              {imgs.image.map((img, i) => (
                 <img
                   src={img}
                   key={i}
