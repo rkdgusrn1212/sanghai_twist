@@ -38,7 +38,6 @@ const Banner = () => {
         for (let sub of res.data.categories) {
           findLeafCat(sub, catList);
         }
-        console.log(catList);
         Promise.all(
           catList.map(
             (cat) =>
@@ -47,7 +46,6 @@ const Banner = () => {
                 url: `http://192.168.0.115:8080/stwist-api/category/${cat.code}?size=${IMG_PER_BANNER}&srt=I`,
                 responseType: 'json',
               }).then((res) => {
-                console.log(res.data);
                 const category = res.data.category;
                 const banner = {
                   name: category.name,
@@ -60,7 +58,6 @@ const Banner = () => {
               }), //items가 없는 카테고리도 있음, BANNER를 꽉 체울 크기인 것들만 집어넣음.
           ),
         ).then(() => {
-          console.log(banners);
           setBanners(banners);
         });
       })
