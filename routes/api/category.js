@@ -4,7 +4,7 @@ const categoryInfo = require('../../services/eleven/categoryInfo');
 const getCatSet = require('../../services/getCatSet');
 
 router.get('/', async (req, res) => {
-  res.json(await getCatSet());
+  res.json(getCatSet());
 });
 
 router.get('/:code', async (req, res) => {
