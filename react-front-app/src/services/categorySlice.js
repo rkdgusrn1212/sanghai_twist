@@ -37,5 +37,5 @@ export const categorySlice = createSlice({
   },
 });
 
-export const selectStatus = (state) => state.status;
-export const selectCategories = (state) => state.categories;
+export const selectStatus = (state) => state.category.status;
+export const selectCategories = (state) => state.category.categories;

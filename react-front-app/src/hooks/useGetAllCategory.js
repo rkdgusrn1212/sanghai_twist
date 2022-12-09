@@ -12,7 +12,7 @@ export default function useGetAllCategory() {
   const status = useSelector((state) => selectStatus(state));
   const categories = useSelector((state) => selectCategories(state));
   useEffect(() => {
-     if (status === undefined) {
+    if (status === undefined) {
       dispatch(fetchCategories());
     }
   }, [status, dispatch]);

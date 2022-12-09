@@ -2,6 +2,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import {useGetAllCategory} from '../../hooks';
+import {useEffect} from 'react';
 
 const CategoryGrid = () => {
   const { categories, isError, isLoading } = useGetAllCategory();
