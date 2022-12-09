@@ -2,6 +2,8 @@ import Carousel from 'react-bootstrap/Carousel';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const IMG_PER_BANNER = 3; //배너 하나당 포함되는 사진 수
 
@@ -45,6 +47,7 @@ const Banner = () => {
                 url: `http://192.168.0.115:8080/stwist-api/category/${cat.code}?size=${IMG_PER_BANNER}&srt=I`,
                 responseType: 'json',
               }).then((res) => {
+                console.log(res.data);
                 const category = res.data.category;
                 const banner = {
                   name: category.name,
@@ -70,11 +73,10 @@ const Banner = () => {
         <Carousel.Item key={i}>
           <div className="d-flex justify-content-center w-100">
             {banner.image.map((img, i) => (
-              <img
-                className="lazyload"
-                data-src={img.high} //최종 high resolution img
-                src={img.low} //lazyload의 low resolution img
+              <LazyLoadImage
+                src={img.high} //lazyload의 low resolution img
                 key={i}
+                effect="blur"
                 alt={i + '번 이미지'}
                 width="300"
                 height="300"
