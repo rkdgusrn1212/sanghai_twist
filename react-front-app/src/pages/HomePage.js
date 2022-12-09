@@ -17,7 +17,7 @@ const Home = () => {
     })
       .then((res) => {
         let images = [];
-        let catList = res.data;
+        let catList = res.data.categories;
         Promise.all(
           catList.map((cat) =>
             axios({
@@ -26,7 +26,7 @@ const Home = () => {
               responseType: 'json',
             }).then((res) => {
               const items = res.data.products.items;
-              items&&images.push(items.map((item) => item.image));
+              items&&items.map((item) => images.push(item.image));
             }),//items가 없는 카테고리도 있음, BANNER를 꽉 체울 크기인 것들만 집어넣음.
           ),
         ).then(() => {
