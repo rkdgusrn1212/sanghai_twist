@@ -1,8 +1,14 @@
-import React from 'react';
-import Cropper from './components/cropper';
-import 'cropperjs/dist/cropper.css';
-import './App.css';
+import { Route, Routes } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+
 function App() {
-  return <Cropper />;
+  return (
+    <Routes>
+      <Route path="/stwist/" element={<HomePage />} />
+      <Route path="/list/:code" element={'List'} />
+      <Route path="/detail/:code" element={'detailCode'} />
+    </Routes>
+  );
 }
+
 export default App;
