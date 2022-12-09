@@ -15,8 +15,8 @@ const getApiRequest = (query) => {
   if (query.pg) url += `&pageNum=${query.pg}`;
   if (query.srt) url += `&sortCd=${query.srt}`;
   let pageSize = 12;
-  if(query.size&&query.size>0) pageSize = query.size;
-  url+=`&pageSize=${pageSize}`;
+  if (query.size && query.size > 0) pageSize = query.size;
+  url += `&pageSize=${pageSize}`;
   return url;
 };
 
@@ -35,23 +35,38 @@ module.exports = async (query) => {
         }),
       ),
     )
-    .then((result) => ({
-      products: {
-        count: result.CategoryResponse.Products.TotalCount._text,
-        items: result.CategoryResponse.Products.Product
-          ? result.CategoryResponse.Products.Product.map((prod) => ({
-              code: prod.ProductCode._text,
-              name: prod.ProductName._cdata,
-              price: prod.ProductPrice._text,
-              image: prod.ProductImage300._cdata,
-            }))
-          : result.CategoryResponse.Products.Product,
-      },
-      category: {
-        name: result.CategoryResponse.Category.CategoryName._cdata,
-        code: result.CategoryResponse.Category.CategoryCode._text,
-      },
-    }))
+    .then((result) => {
+      console.log(result);
+      return {
+        products: {
+          count: result.CategoryResponse.Products.TotalCount._text,
+          items:
+            result.CategoryResponse.Products.Product &&
+            (result.CategoryResponse.Products.Product.map
+              ? result.CategoryResponse.Products.Product.map((prod) => ({
+                  code: prod.ProductCode._text,
+                  name: prod.ProductName._cdata,
+                  price: prod.ProductPrice._text,
+                  image: prod.ProductImage300._cdata,
+                }))
+              : {
+                  code: result.CategoryResponse.Products.Product.ProductCode
+                    ._text,
+                  name: result.CategoryResponse.Products.Product.ProductName
+                    ._cdata,
+                  price:
+                    result.CategoryResponse.Products.Product.ProductPrice._text,
+                  image:
+                    result.CategoryResponse.Products.Product.ProductImage300
+                      ._cdata,
+                }),
+        },
+        category: {
+          name: result.CategoryResponse.Category.CategoryName._cdata,
+          code: result.CategoryResponse.Category.CategoryCode._text,
+        },
+      };
+    })
     .catch((error) => console.log(error.message)); //response의 인코딩은 euc-kr이지만 axios에서 디코딩이 지원 안되기 때문에 iconv 사용
   return result;
 };
