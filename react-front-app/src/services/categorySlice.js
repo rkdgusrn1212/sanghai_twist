@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import server from '../server.json';
 
 const initialState = { categories: [] };
 
@@ -8,7 +9,7 @@ export const fetchCategories = createAsyncThunk(
   async (name, { rejectWithValue }) => {
     const response = await axios({
       method: 'get',
-      url: 'http://192.168.0.115:8080/stwist-api/category',
+      url: `http://${server.host}/stwist-api/category`,
       responseType: 'json',
     });
     const data = response.data;
