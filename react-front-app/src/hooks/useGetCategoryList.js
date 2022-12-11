@@ -12,8 +12,6 @@ export default function useGetCategoryList() {
   const status = useSelector((state) => selectStatus(state));
   const categoryList = useSelector((state) => selectData(state));
   useEffect(() => {
-    console.log(status);
-    console.log(categoryList);
     if (status === undefined) {
       dispatch(fetchCategoryList());
     }
