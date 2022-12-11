@@ -7,36 +7,36 @@ import { useGetCategoryInfo } from '../../hooks';
 
 const IMG_PER_BANNER = 3; //배너 하나당 포함되는 사진 수
 
-const BannerItem = ({category,...props}) => {
-  const [banner, setBanner] = useState();
+const BannerItem = ({ category, ...props }) => {
+  const [content, setContent] = useState();
   const { categoryInfo, isSuccess } = new useGetCategoryInfo({
     code: category.code,
     pg: 1,
-    srt : 'I'
+    srt: 'I',
   });
 
   useEffect(() => {
     if (!isSuccess) return;
     const category = categoryInfo.category;
-    const banner = {
+    const tempContent = {
       name: category.name,
       code: category.code,
       image: categoryInfo.products.items.map((item) => item.image),
     };
-    if (banner.image.length >= IMG_PER_BANNER) {
-      setBanner(banner);
+    if (tempContent.image.length >= IMG_PER_BANNER) {
+      setContent(tempContent);
     }
-  }, [categoryInfo, isSuccess]);
+  }, [categoryInfo, isSuccess, setContent]);
   if (!isSuccess) {
     return <p>로딩중...</p>;
   }
-  if (!banner) {
+  if (!content) {
     return <></>;
   }
   return (
     <Carousel.Item {...props}>
       <div className="d-flex justify-content-center w-100">
-        {banner.image.map((img, i) => (
+        {content.image.map((img, i) => (
           <LazyLoadImage
             src={img.high} //lazyload의 low resolution img
             key={i}
@@ -48,8 +48,8 @@ const BannerItem = ({category,...props}) => {
         ))}
       </div>
       <Carousel.Caption>
-        <h3>{banner.name}</h3>
-        <Link to={'list?code=' + banner.code}>상품 보러가기</Link>
+        <h3>{content.name}</h3>
+        <Link to={'list?code=' + content.code}>상품 보러가기</Link>
       </Carousel.Caption>
     </Carousel.Item>
   );
