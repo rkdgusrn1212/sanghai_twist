@@ -9,7 +9,7 @@ const IMG_PER_BANNER = 3; //배너 하나당 포함되는 사진 수
 
 const BannerItem = ({category,...props}) => {
   const [banner, setBanner] = useState();
-  const { productListByI, isSuccess } = new useGetCategoryInfo({
+  const { categoryInfo, isSuccess } = new useGetCategoryInfo({
     code: category.code,
     pg: 1,
     srt : 'I'
@@ -17,16 +17,16 @@ const BannerItem = ({category,...props}) => {
 
   useEffect(() => {
     if (!isSuccess) return;
-    const category = productListByI.category;
+    const category = categoryInfo.category;
     const banner = {
       name: category.name,
       code: category.code,
-      image: productListByI.products.items.map((item) => item.image),
+      image: categoryInfo.products.items.map((item) => item.image),
     };
     if (banner.image.length >= IMG_PER_BANNER) {
       setBanner(banner);
     }
-  }, [productListByI, isSuccess]);
+  }, [categoryInfo, isSuccess]);
   if (!isSuccess) {
     return <p>로딩중...</p>;
   }

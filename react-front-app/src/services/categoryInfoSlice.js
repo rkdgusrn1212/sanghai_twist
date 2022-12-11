@@ -44,5 +44,5 @@ export const categoryInfoSlice = createSlice({
   },
 });
 
-export const selectStatus = (state, {code, pg, srt}) => state.categoryInfo.status[getStateIndex({code,pg})];
-export const selectData = (state, {code, pg, srt}) => state.categoryInfo.data[getStateIndex({code,pg})];
+export const selectStatus = (state, {code, pg, srt}) => state.categoryInfo.status[getStateIndex({code,pg,srt})];
+export const selectData = (state, {code, pg, srt}) => state.categoryInfo.data[getStateIndex({code,pg,srt})];
