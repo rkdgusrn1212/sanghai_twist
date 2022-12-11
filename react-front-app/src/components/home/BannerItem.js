@@ -1,13 +1,13 @@
 import Carousel from 'react-bootstrap/Carousel';
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, forwardRef } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { useGetCategoryInfo } from '../../hooks';
 
 const IMG_PER_BANNER = 3; //배너 하나당 포함되는 사진 수
 
-const BannerItem = ({ category, ...props }) => {
+const BannerItem = ({ category, ...prop }, ref) => {
   const [content, setContent] = useState();
   const { categoryInfo, isSuccess } = new useGetCategoryInfo({
     code: category.code,
@@ -24,7 +24,7 @@ const BannerItem = ({ category, ...props }) => {
       image: categoryInfo.products.items.map((item) => item.image),
     };
     if (tempContent.image.length >= IMG_PER_BANNER) {
-      tempContent.image = tempContent.image.slice(0,IMG_PER_BANNER);
+      tempContent.image = tempContent.image.slice(0, IMG_PER_BANNER);
       setContent(tempContent);
     }
   }, [categoryInfo, isSuccess, setContent]);
@@ -35,7 +35,7 @@ const BannerItem = ({ category, ...props }) => {
     return <></>;
   }
   return (
-    <Carousel.Item {...props}>
+    <Carousel.Item {...prop} ref={ref}>
       <div className="d-flex justify-content-center w-100">
         {content.image.map((img, i) => (
           <LazyLoadImage
@@ -48,11 +48,11 @@ const BannerItem = ({ category, ...props }) => {
           />
         ))}
       </div>
-      <Carousel.Caption>
+      <Carousel.Caption ref={ref}>
         <h3>{content.name}</h3>
         <Link to={'list?code=' + content.code}>상품 보러가기</Link>
       </Carousel.Caption>
     </Carousel.Item>
   );
 };
-export default BannerItem;
+export default forwardRef(BannerItem);
