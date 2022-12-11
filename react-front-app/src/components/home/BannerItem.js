@@ -24,6 +24,7 @@ const BannerItem = ({ category, ...props }) => {
       image: categoryInfo.products.items.map((item) => item.image),
     };
     if (tempContent.image.length >= IMG_PER_BANNER) {
+      tempContent.image = tempContent.image.slice(0,IMG_PER_BANNER);
       setContent(tempContent);
     }
   }, [categoryInfo, isSuccess, setContent]);
