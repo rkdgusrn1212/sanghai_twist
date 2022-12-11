@@ -11,6 +11,7 @@ export default function useGetProductListByI({code, pg}) {
   const dispatch = useAppDispatch();
   const status = useSelector((state) => selectStatus(state,{code,pg}));
   const productListByI = useSelector((state) => selectData(state,{code,pg}));
+  console.log(productListByI);
   useEffect(() => {
     if (status === undefined) {
       dispatch(fetchProductListByI({code, pg}));
