@@ -1,19 +1,19 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useAppDispatch } from '../hooks';
+import { useAppDispatch } from '.';
 import {
-  fetchCategories,
+  fetchCategoryList,
   selectStatus,
-  selectCategories,
-} from '../services/categorySlice';
+  selectData,
+} from '../services/categoryListSlice';
 
-export default function useGetAllCategory() {
+export default function useGetCategoryList() {
   const dispatch = useAppDispatch();
   const status = useSelector((state) => selectStatus(state));
-  const categories = useSelector((state) => selectCategories(state));
+  const categoryList = useSelector((state) => selectData(state));
   useEffect(() => {
     if (status === undefined) {
-      dispatch(fetchCategories());
+      dispatch(fetchCategoryList());
     }
   }, [status, dispatch]);
   const isUninitialized = status === undefined;
@@ -21,5 +21,5 @@ export default function useGetAllCategory() {
   const isError = status === 'rejected';
   const isSuccess = status === 'fulfilled';
 
-  return { categories, isUninitialized, isLoading, isError, isSuccess };
+  return { categoryList, isUninitialized, isLoading, isError, isSuccess };
 }

@@ -1,16 +1,15 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import {useGetAllCategory} from '../../hooks';
-import {useEffect} from 'react';
+import { useGetCategoryList } from '../../hooks';
 
 const CategoryGrid = () => {
-  const { categories, isError, isLoading } = useGetAllCategory();
+  const { categoryList, isError, isLoading } = useGetCategoryList();
 
   return (
     <Container fluid="lg">
       <Row className="justify-content-center">
-        <Col md="6">{JSON.stringify(categories)}</Col>
+        <Col md="6">{JSON.stringify(categoryList)}</Col>
         <Col md="6">{isError && 'ERROR'}</Col>
         <Col md="6">{isLoading && 'Loading'}</Col>
       </Row>

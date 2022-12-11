@@ -1,6 +1,6 @@
 import Carousel from 'react-bootstrap/Carousel';
 import { useState, useEffect } from 'react';
-import { useGetAllCategory } from '../../hooks';
+import { useGetCategoryList } from '../../hooks';
 import BannerItem from './BannerItem';
 
 /**
@@ -21,16 +21,16 @@ const findLeafCat = (category, leafList) => {
 
 const Banner = () => {
   const [leafCategories, setLeafCategories] = useState([]);
-  const { categories, isSuccess } = new useGetAllCategory();
+  const { categoryList, isSuccess } = new useGetCategoryList();
 
   useEffect(() => {
     if (!isSuccess) return;
     let catList = [];
-    for (let sub of categories.categories) {
+    for (let sub of categoryList.categories) {
       findLeafCat(sub, catList);
     }
     setLeafCategories(catList);
-  }, [categories, isSuccess, setLeafCategories]);
+  }, [categoryList, isSuccess, setLeafCategories]);
 
   if (!isSuccess) {
     return <h1>배너 로딩중...</h1>;
