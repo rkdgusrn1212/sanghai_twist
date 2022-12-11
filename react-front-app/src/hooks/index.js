@@ -1,7 +1,7 @@
 import useGetAllCategory from './useGetAllCategory';
 import { useDispatch } from 'react-redux';
-import useGetProductListByI from './useGetProductListByI';
+import useGetCategoryInfo from './useGetCategoryInfo';
 
 const useAppDispatch = () => useDispatch();
 
-export { useGetAllCategory, useAppDispatch , useGetProductListByI};
+export { useGetAllCategory, useAppDispatch, useGetCategoryInfo };

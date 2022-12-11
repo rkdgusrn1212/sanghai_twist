@@ -3,15 +3,16 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import { useGetProductListByI } from '../../hooks';
+import { useGetCategoryInfo } from '../../hooks';
 
 const IMG_PER_BANNER = 3; //배너 하나당 포함되는 사진 수
 
 const BannerItem = ({category,...props}) => {
   const [banner, setBanner] = useState();
-  const { productListByI, isSuccess } = new useGetProductListByI({
+  const { productListByI, isSuccess } = new useGetCategoryInfo({
     code: category.code,
     pg: 1,
+    srt : 'I'
   });
 
   useEffect(() => {
