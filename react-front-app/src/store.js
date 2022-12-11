@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { categorySlice } from './services/categorySlice';
+import { categoryListSlice } from './services/categoryListSlice';
 import { categoryInfoSlice } from './services/categoryInfoSlice';
 
 export const store = configureStore({
   reducer: {
-    category: categorySlice.reducer,
-    categoryInfo : categoryInfoSlice.reducer
+    categoryList: categoryListSlice.reducer,
+    categoryInfo: categoryInfoSlice.reducer,
   },
 });

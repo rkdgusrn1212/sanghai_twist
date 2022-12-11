@@ -10,7 +10,7 @@ import server from '../server.json';
  */
 export const fetchCategoryInfo = createAsyncThunk(
   'categoryInfo/fetch',
-  async ({code, pg, srt}, { rejectWithValue }) => {
+  async ({ code, pg, srt }, { rejectWithValue }) => {
     const response = await axios({
       method: 'get',
       url: `http://${server.host}/stwist-api/category/${code}?size=12&pg=${pg}&srt=${srt}`,
@@ -24,11 +24,11 @@ export const fetchCategoryInfo = createAsyncThunk(
   },
 );
 
-const getStateIndex = ({code, pg, srt})=> code+'/'+srt+'/'+pg;
+const getStateIndex = ({ code, pg, srt }) => code + '/' + srt + '/' + pg;
 
 export const categoryInfoSlice = createSlice({
   name: 'categoryInfo',
-  initialState : { data: {}, status : {} },
+  initialState: { data: {}, status: {} },
   reducers: [],
   extraReducers: (builder) => {
     builder.addCase(fetchCategoryInfo.pending, (state, action) => {
@@ -44,5 +44,7 @@ export const categoryInfoSlice = createSlice({
   },
 });
 
-export const selectStatus = (state, {code, pg, srt}) => state.categoryInfo.status[getStateIndex({code,pg,srt})];
-export const selectData = (state, {code, pg, srt}) => state.categoryInfo.data[getStateIndex({code,pg,srt})];
+export const selectStatus = (state, { code, pg, srt }) =>
+  state.categoryInfo.status[getStateIndex({ code, pg, srt })];
+export const selectData = (state, { code, pg, srt }) =>
+  state.categoryInfo.data[getStateIndex({ code, pg, srt })];

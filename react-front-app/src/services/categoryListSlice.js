@@ -2,10 +2,8 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import server from '../server.json';
 
-const initialState = { categories: [] };
-
-export const fetchCategories = createAsyncThunk(
-  'category/fetch',
+export const fetchCategoryList = createAsyncThunk(
+  'categoryList/fetch',
   async (name, { rejectWithValue }) => {
     const response = await axios({
       method: 'get',
@@ -20,23 +18,23 @@ export const fetchCategories = createAsyncThunk(
   },
 );
 
-export const categorySlice = createSlice({
-  name: 'category',
-  initialState,
+export const categoryListSlice = createSlice({
+  name: 'categoryList',
+  initialState: { data: undefined, status: undefined },
   reducers: [],
   extraReducers: (builder) => {
-    builder.addCase(fetchCategories.pending, (state, action) => {
+    builder.addCase(fetchCategoryList.pending, (state) => {
       state.status = 'pending';
     });
-    builder.addCase(fetchCategories.fulfilled, (state, action) => {
+    builder.addCase(fetchCategoryList.fulfilled, (state, action) => {
       state.status = 'fulfilled';
-      state.categories = action.payload;
+      state.data = action.payload;
     });
-    builder.addCase(fetchCategories.rejected, (state, action) => {
+    builder.addCase(fetchCategoryList.rejected, (state) => {
       state.status = 'rejected';
     });
   },
 });
 
-export const selectStatus = (state) => state.category.status;
-export const selectCategories = (state) => state.category.categories;
+export const selectStatus = (state) => state.categoryList.status;
+export const selectData = (state) => state.categoryList.data;
