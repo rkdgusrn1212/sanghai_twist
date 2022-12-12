@@ -1,0 +1,27 @@
+.originImg {
+  width: 300px;
+  height: 300px;
+}
+.originArea {
+  width: 350px;
+  height: 300px;
+}
+.img-fluid-top {
+  max-width: 100%;
+}
+.img-fluid-bottom {
+  max-width: 100%;
+}
+.resultImgTop {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+}
+.resultImgBottom {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+.mb-3 {
+  width: 300px;
+}
