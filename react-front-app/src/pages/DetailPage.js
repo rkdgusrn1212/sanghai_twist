@@ -1,60 +1,72 @@
-import { Carousel, Container, Card, Button } from 'react-bootstrap/';
-import axios from 'axios';
+import { Card, Button, Dropdown } from 'react-bootstrap/';
 import { useState, useEffect } from 'react';
 import { Provider, useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
+import Banner from '../components/home/Banner';
+import { useGetProductInfo } from '../hooks';
 import CommonHeader from '../components/common/CommonHeader';
 
-const Detail = (props) => {
-  //   const [bannerImgs, setBannerImgs] = new useState([]);
-  //   const code = props.match.params.code;
-  //   const dispatch = useDispatch();
-  //   const prd_list = useSelector((state) => state.prd.prd_list);
+const Detail = () => {
+  let { code } = useParams();
+  const { productInfo, isUninitialized, isLoading, isError, isSuccess } =
+    useGetProductInfo(code);
+  console.log(code);
+  console.log(productInfo);
 
-  //   let { params } = useParams();
-  let params = 2415488159;
-  console.log(props.code);
-  // 자바스크립트 find라는 ES6신문법 활용해서 Array안에서 원하는 자료를 뽑아서 변수에 담기
-  let detailProduct = props.code.find(function (product) {
-    return (product.params = params);
-  });
+  const numbers = productInfo.optionList[0].values;
+  console.log(numbers);
 
-  //   useEffect(() => {
-  //     axios({
-  //       method: 'get',
-  //       url: 'http://192.168.0.115:8080/stwist-api/category',
-  //       responseType: 'json',
-  //     }).then((res) => {
-  //       let images = [];
-  //       let catList = res.data;
-  //       Promise.all(catList.map((cat) => axios({})));
-  //     });
-  //   });
+  const listItems = numbers.map((number, index) => (
+    <Dropdown.Item key={index}>{number.name}</Dropdown.Item>
+  ));
+  console.log(listItems);
+  if (
+    productInfo.code === undefined ||
+    productInfo.length === 0 ||
+    productInfo.exist === 'N'
+  ) {
+    return (
+      <>
+        <CommonHeader />
+        <div>
+          <h3>해당 상품은 존재하지 않거나 품절되었습니다.</h3>
+        </div>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <CommonHeader />
+        <Banner />
 
-  //   useEffect(() => {
-  //     axios
-  //       .get(`http://192.168.0.115:8080/stwist-api/product/${params}`)
-  //       .then((response) => {
-  //         if (response.data.success) {
-  //           console.log(response.data);
-  //         } else {
-  //           alert('실패');
-  //         }
-  //       });
-  //   }, []);
-  return (
-    <>
-      <CommonHeader />
-      <Card style={{ width: '18rem' }}>
-        <Card.Body>
-          <Card.Title>상품이름</Card.Title>
-          <Card.Text>상품가격</Card.Text>
-          <Button variant="primary">버튼</Button>
-        </Card.Body>
-      </Card>
-    </>
-  );
+        <Card style={{ width: '30rem', margin: 'auto' }}>
+          <Card.Img variant="top" src={productInfo.image} />
+          <Card.Body style={{ float: 'left' }}>
+            <Card.Title>{productInfo.name}</Card.Title>
+            <Card.Text>{productInfo.price.origin}</Card.Text>
+            <Card.Text>{productInfo.shipFee}</Card.Text>
+          </Card.Body>
+          <Button variant="primary">담기</Button>
+          <Dropdown>
+            <Dropdown.Toggle variant="success" id="dropdown-basic">
+              옵션보기
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>{listItems}</Dropdown.Menu>
+          </Dropdown>
+        </Card>
+      </>
+    );
+  }
+
+  //   return (
+  //     <>
+  //       <CommonHeader />
+  //       <div>
+  //         <h3>해당 상품은 존재하지 않거나 품절되었습니다.</h3>
+  //       </div>
+  //     </>
+  //   );
 };
-// react-elastic-carousel
 export default Detail;
