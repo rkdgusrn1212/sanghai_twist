@@ -83,8 +83,8 @@ const classifyTop = (category, top, pants) => {
     for (let subCat of category.child) {
       classifyTop(subCat, tempTop, tempPants);
     }
-    top.push({name:category.name,child:tempTop});
-    pants.push({name:category.name,child:tempPants});
+    top.push({ name: category.name, child: tempTop });
+    pants.push({ name: category.name, child: tempPants });
   } else {
     if (category.top) {
       top.push(category);
@@ -100,9 +100,9 @@ module.exports = () => {
   for (let category of categories) {
     classifyTop(category, top, pants);
   }
-  return [
-    ...categories,
-    { name: 'top', child: top },
-    { name: 'pants', child: pants },
-  ];
+  return {
+    categories: categories,
+    top: top,
+    pants: pants,
+  };
 };
