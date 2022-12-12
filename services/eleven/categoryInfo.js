@@ -38,26 +38,34 @@ module.exports = async (query) => {
     .then((result) => ({
       products: {
         count: result.CategoryResponse.Products.TotalCount._text,
-        items:
-          result.CategoryResponse.Products.Product &&
-          (result.CategoryResponse.Products.Product.map
+        items: result.CategoryResponse.Products.Product
+          ? result.CategoryResponse.Products.Product.map
             ? result.CategoryResponse.Products.Product.map((prod) => ({
                 code: prod.ProductCode._text,
                 name: prod.ProductName._cdata,
                 price: prod.ProductPrice._text,
-                image: prod.ProductImage300._cdata,
+                image: {
+                  low: prod.ProductImage100._cdata,
+                  high: prod.ProductImage300._cdata,
+                },
               }))
-            : {
-                code: result.CategoryResponse.Products.Product.ProductCode
-                  ._text,
-                name: result.CategoryResponse.Products.Product.ProductName
-                  ._cdata,
-                price:
-                  result.CategoryResponse.Products.Product.ProductPrice._text,
-                image:
-                  result.CategoryResponse.Products.Product.ProductImage300
+            : [
+                {
+                  code: result.CategoryResponse.Products.Product.ProductCode
+                    ._text,
+                  name: result.CategoryResponse.Products.Product.ProductName
                     ._cdata,
-              }),
+                  price:
+                    result.CategoryResponse.Products.Product.ProductPrice._text,
+                  image: {
+                    low: result.CategoryResponse.Products.Product
+                      .ProductImage100._cdata,
+                    high: result.CategoryResponse.Products.Product
+                      .ProductImage300._cdata,
+                  },
+                },
+              ]
+          : [],
       },
       category: {
         name: result.CategoryResponse.Category.CategoryName._cdata,
