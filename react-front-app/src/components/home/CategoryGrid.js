@@ -2,6 +2,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Spinner from 'react-bootstrap/Spinner';
+import ListGroup from 'react-bootstrap/ListGroup';
 import { useGetCategoryList } from '../../hooks';
 import MajorCategory from './MajorCategory';
 
@@ -10,6 +11,10 @@ const CategoryGrid = () => {
 
   return (
     <Container fluid="lg">
+      <ListGroup>
+        <ListGroup.Item>상의</ListGroup.Item>
+        <ListGroup.Item>하의</ListGroup.Item>
+      </ListGroup>
       <Row className="justify-content-center">
         <Col className="d-flex justify-content-around">
           {isSuccess ? (
