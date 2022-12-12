@@ -5,7 +5,10 @@ import { run as runHolder } from 'holderjs';
 import { useGetCategoryInfo } from '../../hooks';
 
 const cardStyle = {
-  width: "300px",
+  width: 300,
+  marginTop : 10,
+  marginLeft : 5,
+  marginRight : 5
 }
 
 const MajorCategory = ({ category }) => {

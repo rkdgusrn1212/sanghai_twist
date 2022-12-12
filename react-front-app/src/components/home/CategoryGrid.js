@@ -11,15 +11,15 @@ const CategoryGrid = () => {
   return (
     <Container fluid="lg">
       <Row className="justify-content-center">
-        {isSuccess ? (
-          categoryList.categories.map((category) => (
-            <Col md="6" key={category.code}>
-              <MajorCategory category={category}></MajorCategory>
-            </Col>
-          ))
-        ) : (
-          <Spinner animation="grow" />
-        )}
+        <Col className="d-flex justify-content-around">
+          {isSuccess ? (
+            categoryList.categories.map((category) => (
+                <MajorCategory category={category} key={category.code}/>
+            ))
+          ) : (
+            <Spinner animation="grow" />
+          )}
+        </Col>
       </Row>
     </Container>
   );
