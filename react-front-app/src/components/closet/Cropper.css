@@ -25,3 +25,8 @@
 .mb-3 {
   width: 300px;
 }
+
+.Side {
+  float: right;
+  width: 350px;
+}
