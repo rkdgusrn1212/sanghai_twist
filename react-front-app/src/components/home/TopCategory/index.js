@@ -6,15 +6,15 @@ const TopImage = styled.img`
   &:hover {
     content: url(${topIconHover});
   }
+  position: absolute;
   content: url(${topIcon});
   width: 100px;
   height: 100px;
-  margin-top: 30px;
 `;
 
-const TopCategory = () => (
+const TopCategory = (props) => (
   <a href="./#">
-    <TopImage />
+    <TopImage {...props} />
   </a>
 );
 export default TopCategory;

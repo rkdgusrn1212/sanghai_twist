@@ -6,14 +6,14 @@ const PantsImage = styled.img`
   &:hover {
     content: url(${pantsIconHover});
   }
+  position: absolute;
   content: url(${pantsIcon});
   width: 120px;
   height: 120px;
-  margin-bottom: 30px;
 `;
-const PantsCategory = () => (
+const PantsCategory = (props) => (
   <a href="./#">
-    <PantsImage />
+    <PantsImage {...props}/>
   </a>
 );
 export default PantsCategory;
