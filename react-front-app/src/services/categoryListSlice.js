@@ -4,7 +4,7 @@ import server from '../server.json';
 
 export const fetchCategoryList = createAsyncThunk(
   'categoryList/fetch',
-  async (name, { rejectWithValue }) => {
+  async (arg, { rejectWithValue }) => {
     const response = await axios({
       method: 'get',
       url: `http://${server.host}/stwist-api/category`,
