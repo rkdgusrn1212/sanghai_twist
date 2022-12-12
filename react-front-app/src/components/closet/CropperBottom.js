@@ -64,7 +64,6 @@ const Cropper = () => {
             />
           </Col>
         )}
-        <Col />
       </Row>
       <Row>
         <Col>

@@ -75,7 +75,6 @@ const Cropper = () => {
             <img src={result} alt="Cropped Image" className="img-fluid-top" />
           </Col>
         )}
-        <Col />
       </Row>
     </Container>
   );
