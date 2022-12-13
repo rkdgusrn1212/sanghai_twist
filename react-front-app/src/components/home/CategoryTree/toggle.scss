@@ -1,7 +1,7 @@
 .category-tree-toggle {
   width: 18px;
   height: 18px;
-  margin-top: 5px;
+  margin-top:2px;
   margin-right: 20px;
   margin-left: 5px;
   background-image: url('./expand.png');
@@ -9,5 +9,5 @@
 }
 .category-tree-toggle-on {
   filter: invert(100%);
-  transform: translateY(-8px) rotate(-180deg);
+  transform: translateY(-4px) rotate(-180deg);
 }

@@ -5,7 +5,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 
 const CommonHeader = () => {
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="primary" variant="dark" expand="lg">
       <Container>
         <Navbar.Brand href="#home">상하의 트위스트</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

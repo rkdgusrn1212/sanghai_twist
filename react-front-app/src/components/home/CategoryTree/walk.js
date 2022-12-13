@@ -48,7 +48,8 @@ const generateBranch = ({
   const { parent, level, openNodes, searchTerm } = props;
 
   const { child, name: rawLabel = 'unknown', ...nodeProps } = node;
-  const code = [parent, nodeName].filter(x => x).join('/');
+  const code = [parent.code, nodeName].filter(x => x).join('/');
+  const path = [parent.name, node.name].filter(x=>x).join('>');
   const hasNodes = validateData(child);
   const isOpen = hasNodes && (openNodes.includes(code) || !!searchTerm);
 
@@ -58,7 +59,7 @@ const generateBranch = ({
 
   const data = getValidatedData(child);
   const nextLevelItems = isOpen
-    ? walk({ data, locale, matchSearch, ...props, parent: code, level: level + 1 })
+    ? walk({ data, locale, matchSearch, ...props, parent: {code, name}, level: level + 1, path })
     : [];
 
   return isVisible ? [currentItem, ...nextLevelItems] : nextLevelItems;
