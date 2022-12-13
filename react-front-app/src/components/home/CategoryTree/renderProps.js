@@ -2,13 +2,21 @@ import React from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
 import expandIcon from './expand.png';
 import './toggle.scss';
+import './tree.scss';
 
 const DEFAULT_PADDING = 0.75;
 const ICON_SIZE = 2;
 const LEVEL_SPACE = 1.75;
+const MAX_LEVEL = 10; //레벨 10이상으로 안간다는 가정하에 만듬
 
-const ToggleIcon = ({ on}) => (
-  <img alt="" src={expandIcon} className={['category-tree-toggle',on&&'category-tree-toggle-on'].join(' ')} width="20" height="20"/>
+const ToggleIcon = ({ on }) => (
+  <img
+    alt=""
+    src={expandIcon}
+    className={['category-tree-toggle', on && 'category-tree-toggle-on'].join(
+      ' ',
+    )}
+  />
 );
 
 export const ItemComponent = ({
@@ -23,10 +31,12 @@ export const ItemComponent = ({
   style = {},
 }) => (
   <ListGroup.Item
+    className="category-tree-child-list"
     style={{
       paddingLeft: `${
         DEFAULT_PADDING + ICON_SIZE * (hasNodes ? 0 : 1) + level * LEVEL_SPACE
       }rem`,
+      zIndex: MAX_LEVEL - level,
       ...style,
     }}
     role="button"
@@ -36,13 +46,7 @@ export const ItemComponent = ({
       e.stopPropagation();
     }}
   >
-    {hasNodes && (
-      <div className="rstm-toggle-icon">
-        <ToggleIcon
-          on={isOpen}
-        />
-      </div>
-    )}
+    {hasNodes && <ToggleIcon on={isOpen} />}
     {name}
   </ListGroup.Item>
 );
@@ -56,14 +60,13 @@ export const defaultChildren = ({ search, items }) => {
     <>
       {search && (
         <input
-          className="rstm-search"
           aria-label="Type and search"
           type="search"
           placeholder="Type and search"
           onChange={onSearch}
         />
       )}
-      <ListGroup className="rstm-tree-item-group">
+      <ListGroup>
         {items.map(({ code, ...props }) => (
           <ItemComponent key={code} {...props}></ItemComponent>
         ))}
