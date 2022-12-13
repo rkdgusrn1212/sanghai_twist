@@ -6,7 +6,7 @@ import './tree.scss';
 
 const DEFAULT_PADDING = 0.75;
 const ICON_SIZE = 2;
-const LEVEL_SPACE = 1.75;
+const LEVEL_SPACE = 0.3;
 const MAX_LEVEL = 10; //레벨 10이상으로 안간다는 가정하에 만듬
 
 const ToggleIcon = ({ on }) => (
@@ -28,6 +28,7 @@ export const ItemComponent = ({
   active,
   focused,
   name = 'unknown',
+  path,
   style = {},
 }) => (
   <ListGroup.Item
@@ -46,12 +47,15 @@ export const ItemComponent = ({
       e.stopPropagation();
     }}
   >
-    {hasNodes && <ToggleIcon on={isOpen} />}
-    {name}
+    <div className="d-flex me-1">
+      {hasNodes && <ToggleIcon on={isOpen} />}
+      <p className="me-2"><small>{path&&path+'>'}</small></p>
+      <b>{name}</b>
+    </div>
   </ListGroup.Item>
 );
 
-export const defaultChildren = ({ search, items }) => {
+export const defaultChildren = ({ search, items, parentName }) => {
   const onSearch = (e) => {
     const { value } = e.target;
     search && search(value);
