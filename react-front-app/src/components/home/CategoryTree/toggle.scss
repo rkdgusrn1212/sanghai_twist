@@ -1,0 +1,6 @@
+.category-tree-toggle{
+  transition : transform ease 0.5s;
+}
+.category-tree-toggle-on{
+  transform: rotate(-180deg);
+}

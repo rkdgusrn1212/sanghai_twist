@@ -1,17 +1,14 @@
 import React from 'react';
-import classNames from 'classnames';
+import ListGroup from 'react-bootstrap/ListGroup';
+import expandIcon from './expand.png';
+import './toggle.scss';
 
 const DEFAULT_PADDING = 0.75;
 const ICON_SIZE = 2;
 const LEVEL_SPACE = 1.75;
-const ToggleIcon = ({
-  on,
-  openedIcon,
-  closedIcon,
-}) => (
-  <div role="img" aria-label="Toggle" className="rstm-toggle-icon-symbol">
-    {on ? openedIcon : closedIcon}
-  </div>
+
+const ToggleIcon = ({ on}) => (
+  <img alt="" src={expandIcon} className={['category-tree-toggle',on&&'category-tree-toggle-on'].join(' ')} width="20" height="20"/>
 );
 
 export const ItemComponent = ({
@@ -22,41 +19,32 @@ export const ItemComponent = ({
   toggleNode,
   active,
   focused,
-  openedIcon = '-',
-  closedIcon = '+',
   name = 'unknown',
   style = {},
 }) => (
-  <li
-    className={classNames(
-      'rstm-tree-item',
-      `rstm-tree-item-level${level}`,
-      { 'rstm-tree-item--active': active },
-      { 'rstm-tree-item--focused': focused }
-    )}
+  <ListGroup.Item
     style={{
-      paddingLeft: `${DEFAULT_PADDING +
-        ICON_SIZE * (hasNodes ? 0 : 1) +
-        level * LEVEL_SPACE}rem`,
+      paddingLeft: `${
+        DEFAULT_PADDING + ICON_SIZE * (hasNodes ? 0 : 1) + level * LEVEL_SPACE
+      }rem`,
       ...style,
     }}
     role="button"
     aria-pressed={active}
-    onClick={onClick}
+    onClick={(e) => {
+      hasNodes && toggleNode && toggleNode();
+      e.stopPropagation();
+    }}
   >
     {hasNodes && (
-      <div
-        className="rstm-toggle-icon"
-        onClick={e => {
-          hasNodes && toggleNode && toggleNode();
-          e.stopPropagation();
-        }}
-      >
-        <ToggleIcon on={isOpen} openedIcon={openedIcon} closedIcon={closedIcon} />
+      <div className="rstm-toggle-icon">
+        <ToggleIcon
+          on={isOpen}
+        />
       </div>
     )}
     {name}
-  </li>
+  </ListGroup.Item>
 );
 
 export const defaultChildren = ({ search, items }) => {
@@ -75,11 +63,11 @@ export const defaultChildren = ({ search, items }) => {
           onChange={onSearch}
         />
       )}
-      <ul className="rstm-tree-item-group">
+      <ListGroup className="rstm-tree-item-group">
         {items.map(({ code, ...props }) => (
           <ItemComponent key={code} {...props}></ItemComponent>
         ))}
-      </ul>
+      </ListGroup>
     </>
   );
 };
