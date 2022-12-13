@@ -32,15 +32,14 @@ const Banner = () => {
     setLeafCategories(catList);
   }, [categoryList, isSuccess, setLeafCategories]);
 
-  if (!isSuccess) {
-    return <h1>배너 로딩중...</h1>;
-  }
   return (
-    <Carousel>
-      {leafCategories.map((category, i) => (
-        <BannerItem category={category} key={i} />
-      ))}
-    </Carousel>
+    isSuccess && (
+      <Carousel>
+        {leafCategories.map((category) => (
+          <BannerItem category={category} key={category.code} />
+        ))}
+      </Carousel>
+    )
   );
 };
 export default Banner;
