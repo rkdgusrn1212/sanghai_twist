@@ -15,7 +15,6 @@
     margin : 0 auto;
     display: flex;
     flex-direction: column;
-    padding: 20px 0;
 }
 
 .font{
@@ -52,12 +51,12 @@
     text-align: center;
 }
 
-hr{
+/* hr{
     border: 0;
     height: 4px;
     /* background: #ccc; */
     background-color: lightpink;
-}
+/*} */
 
 .button{
     padding-top: 10px;
@@ -71,4 +70,30 @@ a {
 
 .sort{
     padding-left: 0;
+}
+
+.background{
+    height: 70px;
+    background-color: #eee7df;
+    text-align: center;
+    padding-top: 22px;
+    color: black;
+    font-size: 13px;
+}
+
+.banner{
+    height: 100px;
+    text-align: center;
+    font-size: 30px;
+    color: black;
+    font-weight: bolder;
+    padding-top: 30px;
+}
+
+.bannerimg{
+    background-image: url(./images/banner.png);
+    background-size: cover;
+    height: 60vh;
+    width: 65vw;
+    background-repeat : no-repeat;
 }

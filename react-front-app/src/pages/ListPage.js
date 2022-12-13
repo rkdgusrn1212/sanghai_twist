@@ -9,8 +9,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import TriggerExample from './function';
 import server from '../server.json';
-
-
+// import img from './images/banner.png'
 
 const ListPage = () => {
 
@@ -40,12 +39,14 @@ const convertPrice = (price) => {
  
     return(
         <div class="container" className={styles.container}>
-            <div className={styles.route}>
+                <div className={styles.background}>월,수,금 7시 업데이트!▶</div>
+                <div className={styles.banner}>S,TWIST</div>
+                <div className={styles.bannerimg}></div>
+                <hr/>
                 <div>
                     <SlHome /> HOME > {categoryInfo.category.name}
-
                  </div><br />
-            </div><br/>
+           <br/>
 
     <div class="container">
     <div class="row">
