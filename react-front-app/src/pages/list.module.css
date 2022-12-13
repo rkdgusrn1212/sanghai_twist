@@ -37,6 +37,7 @@
     font-weight:bold !important; 
     justify-content: center;
     height: 150px;
+    /* padding-left: 0; */
 }
 
 .price3{
@@ -55,10 +56,19 @@ hr{
     border: 0;
     height: 4px;
     /* background: #ccc; */
-    background-color: dimgrey;
+    background-color: lightpink;
 }
 
 .button{
     padding-top: 10px;
     text-align: center;
+}
+
+a {
+    text-decoration-line: none !important;
+    color :lightslategrey!important;
+}
+
+.sort{
+    padding-left: 0;
 }
