@@ -20,7 +20,6 @@ const CategoryTree = ({
   matchSearch,
   initialActiveKey,
   initialFocusKey,
-  children,
   hasSearch,
   disableKeyboard,
 }) => {
