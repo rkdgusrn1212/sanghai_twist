@@ -28,31 +28,29 @@ const BannerItem = ({ category, ...prop }, ref) => {
       setContent(tempContent);
     }
   }, [categoryInfo, isSuccess, setContent]);
-  if (!isSuccess) {
-    return <p>로딩중...</p>;
-  }
-  if (!content) {
-    return <></>;
-  }
+
   return (
-    <Carousel.Item {...prop} ref={ref}>
-      <div className="d-flex justify-content-center w-100">
-        {content.image.map((img, i) => (
-          <LazyLoadImage
-            src={img.high} //lazyload의 low resolution img
-            key={i}
-            effect="blur"
-            alt={i + '번 이미지'}
-            width="300"
-            height="300"
-          />
-        ))}
-      </div>
-      <Carousel.Caption ref={ref}>
-        <h3>{content.name}</h3>
-        <Link to={'list?code=' + content.code}>상품 보러가기</Link>
-      </Carousel.Caption>
-    </Carousel.Item>
+    isSuccess &&
+    content && (
+      <Carousel.Item {...prop} ref={ref}>
+        <div className="d-flex justify-content-center w-100">
+          {content.image.map((img, i) => (
+            <LazyLoadImage
+              src={img.high} //lazyload의 low resolution img
+              key={i}
+              effect="blur"
+              alt={i + '번 이미지'}
+              width="300"
+              height="300"
+            />
+          ))}
+        </div>
+        <Carousel.Caption ref={ref}>
+          <h3>{content.name}</h3>
+          <Link to={'list?code=' + content.code}>상품 보러가기</Link>
+        </Carousel.Caption>
+      </Carousel.Item>
+    )
   );
 };
 export default forwardRef(BannerItem);
