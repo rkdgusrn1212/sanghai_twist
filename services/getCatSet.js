@@ -83,8 +83,8 @@ const classifyTop = (category, top, pants) => {
     for (let subCat of category.child) {
       classifyTop(subCat, tempTop, tempPants);
     }
-    top.push({ name: category.name, child: tempTop });
-    pants.push({ name: category.name, child: tempPants });
+    top.push({ name: category.name, code: category.code, child: tempTop });
+    pants.push({ name: category.name, code: category.code, child: tempPants });
   } else {
     if (category.top) {
       top.push(category);
