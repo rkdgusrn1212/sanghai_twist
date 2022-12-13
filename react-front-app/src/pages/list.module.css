@@ -1,0 +1,64 @@
+.route {
+    color: #8c8c8c;
+}
+
+.image{
+    width: 200px;
+    height: 200px; 
+    display: flex; 
+    margin: 0px auto;
+    /* border: solid gainsboro; */
+}
+
+.container {
+    width: 65%;
+    margin : 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+}
+
+.font{
+    color: red;
+}
+
+.id{
+    font-size: 15px;
+    line-height: 45px;
+    text-align: center;
+}
+
+.price{
+ line-height: 45px;
+}
+
+.price2{
+    font-size: 23px;
+    font-weight:bold !important; 
+    justify-content: center;
+    height: 150px;
+}
+
+.price3{
+    text-align: center;
+    padding-right: 30px;
+}
+
+.provider{
+    font-size: 15px;
+    line-height: 45px;
+    font-weight: bolder;
+    text-align: center;
+}
+
+hr{
+    border: 0;
+    height: 4px;
+    /* background: #ccc; */
+    background-color: dimgrey;
+}
+
+.button{
+    padding-top: 10px;
+    text-align: center;
+}
