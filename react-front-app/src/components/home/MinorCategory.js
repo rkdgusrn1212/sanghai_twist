@@ -29,7 +29,7 @@ const MinorCategory = ({ category, delay }) => {
     <Card
       className={[
         'minor-category-card-disabled',
-        enabled && 'minor-category-card-enabled',
+        enabled && 'minor-category-card-enabled'
       ].join(' ')}
     >
       {isSuccess && categoryInfo.products.items[0] ? (
