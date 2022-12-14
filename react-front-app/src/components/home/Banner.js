@@ -35,7 +35,7 @@ const Banner = () => {
   return (
     isSuccess && (
       <Carousel>
-        {leafCategories.map((category) => (
+        {categoryList.categories.map((category) => (
           <BannerItem category={category} key={category.code} />
         ))}
       </Carousel>
