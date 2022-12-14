@@ -10,6 +10,14 @@
 }
 .category-tree-child-list {
   overflow-y: hidden;
+  height: 40px;
   animation-name: slide-in;
   animation-duration: 0.5s;
+}
+.category-tree-root{
+  overflow-y: hidden;
+}
+
+.category-tree-search {
+  margin-bottom: 30px;
 }

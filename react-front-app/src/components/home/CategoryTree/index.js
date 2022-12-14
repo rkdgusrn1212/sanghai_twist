@@ -20,7 +20,6 @@ const CategoryTree = ({
   matchSearch,
   initialActiveKey,
   initialFocusKey,
-  children,
   hasSearch,
   disableKeyboard,
 }) => {
@@ -200,8 +199,6 @@ const CategoryTree = ({
   );
   const { searchTerm } = treeState;
   const items = generateItems();
-  const render = children || defaultChildren;
-
   const renderProps = hasSearch
     ? {
         search,
@@ -212,9 +209,11 @@ const CategoryTree = ({
     : { items, resetOpenNodes };
 
   return disableKeyboard ? (
-    render(renderProps)
+    defaultChildren(renderProps)
   ) : (
-    <KeyDown {...getKeyDownProps(items)}>{render(renderProps)}</KeyDown>
+    <KeyDown {...getKeyDownProps(items)}>
+      {defaultChildren(renderProps)}
+    </KeyDown>
   );
 };
 
