@@ -29,18 +29,40 @@
 .mb-3 {
   width: 300px;
 }
-
+.cards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .Side {
   float: right;
   width: 350px;
+  height: 800px;
+  overflow: scroll;
 }
 
 .btn {
   width: 50px;
   float: left;
 }
-
+.title {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 .zoom {
   display: flex;
   justify-content: space-around;
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  /* 스크롤이 움직이는 영역  */
+  background-color: #f9f9f9;
+}
+::-webkit-scrollbar-thumb {
+  /*  스크롤  */
+  background-color: #ddd;
+  border-radius: 30px;
 }

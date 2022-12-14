@@ -18,11 +18,9 @@ function SideDetail(props) {
     );
   } else {
     return (
-      <div>
+      <div className="cards">
         <img src={productInfo.image} style={{ width: '250px' }} />
-        <h6>
-          {productInfo.name};{props.elem}
-        </h6>
+        <h6>{productInfo.name}</h6>
       </div>
     );
   }

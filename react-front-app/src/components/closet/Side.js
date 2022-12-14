@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './Cropper.css';
 import { Card, Tab, Tabs } from 'react-bootstrap';
 import { useGetProductInfo } from '../../hooks';
-
+import SideDetail from './SideDetail';
 const Side = () => {
   let [inputValue, setInputValue] = useState('');
   let [code, setCode] = useState(null);
@@ -39,33 +39,28 @@ const Side = () => {
   }
   return (
     <>
-      <div className="parent">
+      {/* <div className="parent">
         name: <div className="todosMap">{}</div>
         <form onSubmit={onSubmit}>
           <input value={inputValue} onChange={onChange}></input>
-          <button>저장</button>
+          <button>저장</button> 
         </form>
-      </div>
+      </div> */}
       <div className="Side">
-        <Tabs
-          defaultActiveKey="profile"
-          id="fill-tab-example"
-          className="mb-3"
-          fill
-        >
+        <Tabs defaultActiveKey="home" id="sideDetail" className="mb-4" fill>
           <Tab eventKey="home" title="상의">
             {JSON.parse(localStorage.getItem('topList')) &&
-              JSON.parse(localStorage.getItem('topList')).map((elem, i) => (
-                <Card key={elem}>
-                  <h2>{elem}</h2>
+              JSON.parse(localStorage.getItem('topList')).map((elem) => (
+                <Card key={elem} className="cards">
+                  <SideDetail elem={elem} />
                 </Card>
               ))}
           </Tab>
           <Tab eventKey="profile" title="하의">
             {JSON.parse(localStorage.getItem('bottomList')) &&
-              JSON.parse(localStorage.getItem('bottomList')).map((elem, i) => (
-                <Card key={i}>
-                  <h2>{elem}</h2>
+              JSON.parse(localStorage.getItem('bottomList')).map((elem) => (
+                <Card key={elem}>
+                  <SideDetail elem={elem} />
                 </Card>
               ))}
           </Tab>

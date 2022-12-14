@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 import './Cropper.css';
-import { Form, Container, Row, Col, Button } from 'react-bootstrap';
+import { Form, Container, Row, Col } from 'react-bootstrap';
 import 'cropperjs';
 import styled from 'styled-components';
 
