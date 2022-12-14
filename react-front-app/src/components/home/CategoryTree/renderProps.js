@@ -1,17 +1,23 @@
 import React from 'react';
-import classNames from 'classnames';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Form from 'react-bootstrap/Form';
+import expandIcon from './expand.png';
+import './toggle.scss';
+import './tree.scss';
 
 const DEFAULT_PADDING = 0.75;
 const ICON_SIZE = 2;
-const LEVEL_SPACE = 1.75;
-const ToggleIcon = ({
-  on,
-  openedIcon,
-  closedIcon,
-}) => (
-  <div role="img" aria-label="Toggle" className="rstm-toggle-icon-symbol">
-    {on ? openedIcon : closedIcon}
-  </div>
+const LEVEL_SPACE = 0.3;
+const MAX_LEVEL = 10; //레벨 10이상으로 안간다는 가정하에 만듬
+
+const ToggleIcon = ({ on }) => (
+  <img
+    alt=""
+    src={expandIcon}
+    className={['category-tree-toggle', on && 'category-tree-toggle-on'].join(
+      ' ',
+    )}
+  />
 );
 
 export const ItemComponent = ({
@@ -22,44 +28,35 @@ export const ItemComponent = ({
   toggleNode,
   active,
   focused,
-  openedIcon = '-',
-  closedIcon = '+',
   name = 'unknown',
+  path,
   style = {},
 }) => (
-  <li
-    className={classNames(
-      'rstm-tree-item',
-      `rstm-tree-item-level${level}`,
-      { 'rstm-tree-item--active': active },
-      { 'rstm-tree-item--focused': focused }
-    )}
+  <ListGroup.Item
+    className="category-tree-child-list d-flex align-items-center"
     style={{
-      paddingLeft: `${DEFAULT_PADDING +
-        ICON_SIZE * (hasNodes ? 0 : 1) +
-        level * LEVEL_SPACE}rem`,
+      paddingLeft: `${
+        DEFAULT_PADDING + ICON_SIZE * (hasNodes ? 0 : 1) + level * LEVEL_SPACE
+      }rem`,
+      zIndex: MAX_LEVEL - level,
       ...style,
     }}
     role="button"
     aria-pressed={active}
-    onClick={onClick}
+    onClick={(e) => {
+      hasNodes && toggleNode && toggleNode();
+      e.stopPropagation();
+    }}
   >
-    {hasNodes && (
-      <div
-        className="rstm-toggle-icon"
-        onClick={e => {
-          hasNodes && toggleNode && toggleNode();
-          e.stopPropagation();
-        }}
-      >
-        <ToggleIcon on={isOpen} openedIcon={openedIcon} closedIcon={closedIcon} />
-      </div>
-    )}
-    {name}
-  </li>
+    {hasNodes && <ToggleIcon on={isOpen} />}
+    <p className="me-2 align-self-baseline">
+      <small>{path && path + '>'}</small>
+    </p>
+    <b>{name}</b>
+  </ListGroup.Item>
 );
 
-export const defaultChildren = ({ search, items }) => {
+export const defaultChildren = ({ search, items, parentName }) => {
   const onSearch = (e) => {
     const { value } = e.target;
     search && search(value);
@@ -67,19 +64,19 @@ export const defaultChildren = ({ search, items }) => {
   return (
     <>
       {search && (
-        <input
-          className="rstm-search"
+        <Form.Control
+          className="category-tree-search"
           aria-label="Type and search"
           type="search"
           placeholder="Type and search"
           onChange={onSearch}
         />
       )}
-      <ul className="rstm-tree-item-group">
+      <ListGroup className="category-tree-root">
         {items.map(({ code, ...props }) => (
           <ItemComponent key={code} {...props}></ItemComponent>
         ))}
-      </ul>
+      </ListGroup>
     </>
   );
 };
