@@ -9,7 +9,9 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import TriggerExample from './function';
 import server from '../server.json';
-// import img from './images/banner.png'
+import Button from 'react-bootstrap/esm/Button';
+import axios from 'axios';
+import {useGetProductionInfo} from '../hooks'
 
 const ListPage = () => {
   const { code, pg, srt } = useParams();
@@ -20,20 +22,53 @@ const ListPage = () => {
       pg: pg,
       srt: srt,
     });
+  // console.log(categoryInfo)
 
-  //페이징
+  const [data, setData] = useState([]);
+  let copy = [];
+  console.log(data)
+  let [counter, setCounter] = useState(0);
+  
 
-  //console.log(code)
-  // console.log(categoryInfo.products.count)
-  //console.log(categoryInfo)
-  //isSuccess&&
+    //2부터 버튼클릭시 1씩 증가
+    if(isSuccess){
+      console.log('check')
+    console.log(categoryInfo.products.items)
+
+  }
+
+    // useEffect ( () => {
+    //   console.log(`http://192.168.0.115:8080/stwist-api/category/${code}?size=12&pg=${counter}&srt=${srt}`)
+    //   axios.get(`http://192.168.0.115:8080/stwist-api/category/${code}?size=12&pg=${counter}&srt=${srt}`)
+    //   .then((response) => {
+    //     console.log(counter)
+
+
+    //     console.log('받아오는 데이터값')
+    //     console.log(response.data.products.items);
+    //     console.log(data);
+        
+    //     if(!data){
+    //       let copy = [...data, ...response.data.products.items];
+    //     }else{
+    //       let copy = [...response.data.products.items];
+    //     }
+        
+    //     setData(copy);
+    //   })
+    //   // .catch ( () => {console.log('데이터 전송 실패')})
+    // },[counter])
+
 
   //정규화식
   const convertPrice = (price) => {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   };
 
+ // <a href={`/stwist/list/${code}/L/1`}> 낮은 가격순 </a>|{' '}
+
   if (isSuccess) {
+    //console.log(categoryInfo.products.items)
     return (
       <div class="container" className={styles.container}>
         <div className={styles.background}>월,수,금 7시 업데이트!▶</div>
@@ -57,7 +92,7 @@ const ListPage = () => {
             </div>
             <div class="col-6">
               <a href={`/stwist/list/${code}/CP/1`}> 인기순 </a>
-              <TriggerExample />|{' '}
+              <TriggerExample />|
               <a href={`/stwist/list/${code}/L/1`}> 낮은 가격순 </a>|{' '}
               <a href={`/stwist/list/${code}/A/1`}> 누적 판매순 </a>|{' '}
               <a href={`/stwist/list/${code}/I/1`}> 많은 리뷰순 </a>|{' '}
@@ -104,13 +139,13 @@ const ListPage = () => {
               </Container>
             );
           })}
-          {
-            <div className={styles.button}>
-              <button type="button" class="btn btn-secondary btn-sm">
-                ㅤ˅ㅤ
-              </button>
-            </div>
-          }
+
+          <div className={styles.buttons}>
+            {' '}
+            <Button type="button" class="primary" onClick = { () => setCounter(counter+1)} >
+              ㅤ˅ㅤ
+            </Button>
+          </div>
         </div>
       </div>
     );
