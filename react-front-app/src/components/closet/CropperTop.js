@@ -3,6 +3,8 @@ import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 import './Cropper.css';
 import { Form, Container, Row, Col, Button } from 'react-bootstrap';
+import 'cropperjs';
+import styled from 'styled-components';
 
 const Cropper = () => {
   const [src, selectFile] = useState(null);
@@ -13,8 +15,6 @@ const Cropper = () => {
   const [image, setImage] = useState(null);
   const [crop, setCrop] = useState({ aspect: NaN });
   const [result, setResult] = useState(null);
-
-  function getZoomImg() {}
 
   function getCroppedImg() {
     const canvas = document.createElement('canvas');
@@ -55,6 +55,13 @@ const Cropper = () => {
           </Form.Group>
         </Col>{' '}
       </Row>{' '}
+      {/* <Row>
+        <Col xs={6} />
+        <Col className="zoom" xs={6}>
+          <Button variant="primary">+</Button>
+          <Button variant="danger">-</Button>
+        </Col>
+      </Row> */}
       <Row>
         {src && (
           <Col className="originArea">
@@ -69,7 +76,7 @@ const Cropper = () => {
               dragCrop={getCroppedImg}
             />
           </Col>
-        )}
+        )}{' '}
         {result && (
           <Col className="resultImgTop">
             <img src={result} alt="Cropped Image" className="img-fluid-top" />

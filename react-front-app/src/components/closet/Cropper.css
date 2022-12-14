@@ -8,9 +8,13 @@
 }
 .img-fluid-top {
   max-width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 10px;
 }
 .img-fluid-bottom {
   max-width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 10px;
 }
 .resultImgTop {
   display: flex;
@@ -29,4 +33,14 @@
 .Side {
   float: right;
   width: 350px;
+}
+
+.btn {
+  width: 50px;
+  float: left;
+}
+
+.zoom {
+  display: flex;
+  justify-content: space-around;
 }

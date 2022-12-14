@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import './Cropper.css';
 import { Nav, Row } from 'react-bootstrap';
+import { useGetProductInfo } from '../../hooks';
 
 const Side = () => {
   const [items, setItems] = useState([]);
   let [inputValue, setInputValue] = useState('');
+  let [code, setCode] = useState(null);
   let [id, setId] = useState({ code: '' });
+
+  const { productInfo, isUninitialized, isLoading, isError, isSuccess } =
+    useGetProductInfo(code);
+  console.log(productInfo);
 
   const onChange = (e) => {
     setInputValue(e.target.value);
   };
 
-  //inputValue가 변하면, 그때 newTodo값을 바꿔주자
   useEffect(() => setId({ code: inputValue }), [inputValue]);
 
   const onSubmit = (e) => {
@@ -24,7 +29,7 @@ const Side = () => {
 
   const itemsMap = items.map((item, i) => <p key={i}>{item.name}</p>);
 
-  //인풋에 todo값들을 입력할 때마다, localStorage에 저장한다.
+  //인풋에 값을 입력할 때마다, localStorage에 저장
   useEffect(() => {
     window.localStorage.setItem('itemList', JSON.stringify(items));
   }, [items]);
