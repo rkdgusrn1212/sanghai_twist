@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import './Cropper.css';
-import { Nav, Row } from 'react-bootstrap';
+import { Card, Tab, Tabs } from 'react-bootstrap';
 import { useGetProductInfo } from '../../hooks';
-import { render } from 'react-dom';
-import { element } from 'prop-types';
 
 const Side = () => {
-  const [resultTop, setResultTop] = useState([]);
   let [inputValue, setInputValue] = useState('');
   let [code, setCode] = useState(null);
 
@@ -29,7 +26,17 @@ const Side = () => {
       localStorage.setItem('topList', JSON.stringify([...decoded, inputValue]));
     }
   };
-
+  function TabContent({ clickTab }) {
+    let [fade, setFade] = useState('');
+    useEffect(() => {
+      setTimeout(() => {
+        setFade('end');
+      }, 10);
+      return () => {
+        setFade('');
+      };
+    }, [clickTab]);
+  }
   return (
     <>
       <div className="parent">
@@ -40,20 +47,29 @@ const Side = () => {
         </form>
       </div>
       <div className="Side">
-        <Nav justify variant="tabs" defaultActiveKey="/home">
-          <Nav.Item>
-            <Nav.Link eventKey="link-1" /*href="/home"*/>상의</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link eventKey="link-2">하의</Nav.Link>
-          </Nav.Item>
-        </Nav>
-        {JSON.parse(localStorage.getItem('topList')) &&
-          JSON.parse(localStorage.getItem('topList')).map((elem, i) => (
-            <div key={i}>
-              <h2>{elem}</h2>
-            </div>
-          ))}
+        <Tabs
+          defaultActiveKey="profile"
+          id="fill-tab-example"
+          className="mb-3"
+          fill
+        >
+          <Tab eventKey="home" title="상의">
+            {JSON.parse(localStorage.getItem('topList')) &&
+              JSON.parse(localStorage.getItem('topList')).map((elem, i) => (
+                <Card key={elem}>
+                  <h2>{elem}</h2>
+                </Card>
+              ))}
+          </Tab>
+          <Tab eventKey="profile" title="하의">
+            {JSON.parse(localStorage.getItem('bottomList')) &&
+              JSON.parse(localStorage.getItem('bottomList')).map((elem, i) => (
+                <Card key={i}>
+                  <h2>{elem}</h2>
+                </Card>
+              ))}
+          </Tab>
+        </Tabs>
       </div>
     </>
   );
