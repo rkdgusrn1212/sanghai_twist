@@ -5,12 +5,15 @@
   margin-top: 10px;
   margin-left: 5px;
   margin-right: 5px;
-  transition-property: 'box-shadow width height';
+  font-size:20px;
+  transition-property: 'font-size box-shadow width height';
   transition-duration: 0.3s;
 }
 
 .major-category-card-shrink {
-  transform: scaleX(50%) scaleY(50%);
+  width: 150px;
+  height: 200px;
+  font-size:10px;
 }
 
 .major-category-card-selected {
