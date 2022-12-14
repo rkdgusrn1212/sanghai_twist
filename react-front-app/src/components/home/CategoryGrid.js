@@ -19,7 +19,7 @@ const findLeafCat = (category, leafList, parent) => {
     }
     parent.pop();
   } else {
-    leafList.push({...category, parent:parent.join('>')});
+    leafList.push({ ...category, parent: parent.join('>') });
   }
 };
 
@@ -72,16 +72,14 @@ const CategoryGrid = () => {
       </div>
       <div className="d-flex flex-wrap">
         {isSuccess ? (
-          leafCategories.map((category) => (
+          leafCategories.map((category, i) => (
             <MinorCategory
               key={category.code}
-              shrink={shrink}
-              selected={selected === category.code}
               category={category}
               onClick={(nextSelected) =>
                 handleClick(category.code, nextSelected)
               }
-              enabled={shrink}
+              delay={100 * i}
             />
           ))
         ) : (

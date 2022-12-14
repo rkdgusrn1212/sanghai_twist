@@ -5,16 +5,15 @@
   margin-top: 10px;
   margin-left: 5px;
   margin-right: 5px;
-  font-size:12px;
-  transform: translateX(-1000px) translateY(200px);
+  font-size: 12px;
+  transform: translateX(500px);
   transition-property: 'opacity box-shadow';
-  transition-duration: 1s;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-out;
 }
 
 .minor-category-card-enabled {
-  width: 140px;
-  opacity : 1;
-  transform: translateX(0);
-  transform: translateY(0);
+  opacity: 1;
+  transform: translateX(0) translateY(0);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 4px rgba(0, 0, 0, 0.2);
 }
