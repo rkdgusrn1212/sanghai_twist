@@ -1,11 +1,11 @@
-import { useEffect, useCallback } from 'react';
+import { useEffect } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Card from 'react-bootstrap/Card';
 import { run as runHolder } from 'holderjs';
 import { useGetCategoryInfo } from '../../hooks';
-import './MajorCategory.scss';
+import './MinorCategory.scss';
 
-const MajorCategory = ({ category, shrink, onClick, selected }) => {
+const MinorCategory = ({ category, enabled }) => {
   const { categoryInfo, isSuccess } = useGetCategoryInfo({
     code: category.code,
     pg: 1,
@@ -14,22 +14,16 @@ const MajorCategory = ({ category, shrink, onClick, selected }) => {
 
   useEffect(() => {
     runHolder({
-      images: '#major-category-img-holder',
+      images: '#minor-category-img-holder',
     });
   }, []);
-
-  const handleClicked = useCallback(() => {
-    onClick && onClick(!selected);
-  }, [selected, onClick]);
 
   return (
     <Card
       className={[
-        'major-category-card',
-        shrink && 'major-category-card-shrink',
-        selected && 'major-category-card-selected',
+        'minor-category-card-disabled',
+        enabled && 'minor-category-card-enabled',
       ].join(' ')}
-      onClick={handleClicked}
     >
       {isSuccess && categoryInfo.products.items[0] ? (
         <LazyLoadImage
@@ -37,13 +31,13 @@ const MajorCategory = ({ category, shrink, onClick, selected }) => {
           src={categoryInfo.products.items[0].image.high}
         />
       ) : (
-        <Card.Img id="major-category-img-holder" src="holder.js/100px300" />
+        <Card.Img id="minor-category-img-holder" src="holder.js/100px200" />
       )}
       <Card.Body>
-        <Card.Title style={{fontSize:'inherit'}}>{category.name}</Card.Title>
-        <Card.Text></Card.Text>
+        <Card.Title style={{ fontSize: 'inherit' }}>{category.name}</Card.Title>
+        <Card.Text style={{ fontSize: 'inherit', color:'darkgray' }}><small>{category.parent}</small></Card.Text>
       </Card.Body>
     </Card>
   );
 };
-export default MajorCategory;
+export default MinorCategory;
