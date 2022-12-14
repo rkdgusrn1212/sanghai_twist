@@ -26,3 +26,6 @@
 
 # src/services/ 폴더 소유
 /react-front-app/src/services/ @rkdgusrn1212
+
+# 카페 24 클래식 타입 폰트 소유
+/react-front-app/src/fonts/Cafe24Classictype.ttf @rkdgusrn1212

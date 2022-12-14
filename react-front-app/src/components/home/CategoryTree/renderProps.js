@@ -56,7 +56,7 @@ export const ItemComponent = ({
   </ListGroup.Item>
 );
 
-export const defaultChildren = ({ search, items, parentName }) => {
+export const defaultChildren = ({ search, items }) => {
   const onSearch = (e) => {
     const { value } = e.target;
     search && search(value);
@@ -66,9 +66,8 @@ export const defaultChildren = ({ search, items, parentName }) => {
       {search && (
         <Form.Control
           className="category-tree-search"
-          aria-label="Type and search"
           type="search"
-          placeholder="Type and search"
+          placeholder="카테고리 검색어 입력"
           onChange={onSearch}
         />
       )}

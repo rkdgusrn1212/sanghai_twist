@@ -1,11 +1,23 @@
 import Carousel from 'react-bootstrap/Carousel';
-import { Link } from 'react-router-dom';
+import Badge from 'react-bootstrap/Badge';
+import styled from 'styled-components';
 import { useState, useEffect, forwardRef } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { useGetCategoryInfo } from '../../hooks';
 
 const IMG_PER_BANNER = 3; //배너 하나당 포함되는 사진 수
+
+const BannerItemTitle = styled.a`
+  font-family: cafe-classic, serif;
+  text-decoration: none;
+  font-size: 32px;
+  color: #ffffff;
+  &:hover {
+    font-size: 40px;
+    color: #FFE0B2;
+  }
+`;
 
 const BannerItem = ({ category, ...prop }, ref) => {
   const [content, setContent] = useState();
@@ -46,8 +58,11 @@ const BannerItem = ({ category, ...prop }, ref) => {
           ))}
         </div>
         <Carousel.Caption ref={ref}>
-          <h3>{content.name}</h3>
-          <Link to={'list?code=' + content.code}>상품 보러가기</Link>
+          <BannerItemTitle>
+            <Badge style={{color:'inherit'}} pill bg="dark">
+              {content.name}
+            </Badge>
+          </BannerItemTitle>
         </Carousel.Caption>
       </Carousel.Item>
     )
