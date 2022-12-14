@@ -1,0 +1,23 @@
+@keyframes slide-in {
+  from {
+    transform: translateY(-100%);
+    opacity: 0.5;
+  }
+  to {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+.category-tree-child-list {
+  overflow-y: hidden;
+  height: 40px;
+  animation-name: slide-in;
+  animation-duration: 0.5s;
+}
+.category-tree-root{
+  overflow-y: hidden;
+}
+
+.category-tree-search {
+  margin-bottom: 30px;
+}

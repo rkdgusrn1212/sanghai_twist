@@ -1,4 +1,4 @@
-import { Card, Button, Dropdown } from 'react-bootstrap/';
+import { Card, Button, Dropdown, Alert } from 'react-bootstrap/';
 import { useState, useEffect } from 'react';
 import { Provider, useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -8,9 +8,31 @@ import { useGetProductInfo } from '../hooks';
 import CommonHeader from '../components/common/CommonHeader';
 import StarRate from '../components/common/useSetStar';
 
-const moveShopPage = (props) => {
+function MoveShopPage(props) {
   console.log(props);
-};
+  const [show, setShow] = useState(true);
+
+  return (
+    <>
+      <Alert show={show} variant="success">
+        <Alert.Heading>How's it going?!</Alert.Heading>
+        <p>
+          Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget
+          lacinia odio sem nec elit. Cras mattis consectetur purus sit amet
+          fermentum.
+        </p>
+        <hr />
+        <div className="d-flex justify-content-end">
+          <Button onClick={() => setShow(false)} variant="outline-success">
+            Close me y'all!
+          </Button>
+        </div>
+      </Alert>
+
+      {!show && <Button onClick={() => setShow(true)}>Show Alert</Button>}
+    </>
+  );
+}
 
 const Detail = () => {
   let { code, isTop } = useParams();
@@ -45,7 +67,7 @@ const Detail = () => {
     console.log(numbers);
 
     const listItems = numbers.map((number, index) => (
-      <Dropdown.Item key={index} onClick={() => moveShopPage(number.code)}>
+      <Dropdown.Item key={index} onClick={() => MoveShopPage(number.name)}>
         {number.name}
       </Dropdown.Item>
     ));
