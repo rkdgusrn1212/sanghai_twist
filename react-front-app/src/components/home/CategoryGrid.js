@@ -79,7 +79,7 @@ const CategoryGrid = () => {
               onClick={(nextSelected) =>
                 handleClick(category.code, nextSelected)
               }
-              delay={100 * i}
+              delay={100 * i + 100}
             />
           ))
         ) : (

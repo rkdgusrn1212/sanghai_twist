@@ -17,18 +17,18 @@
   margin-left: 5px;
   margin-right: 5px;
   font-size: 12px;
-  transform: translateX(500px);
-  transition-property: transform, opacity;
+  left: 500px;
+  transition-property: left, opacity;
   transition-duration: 0.5s, 0.5s;
+}
+
+.minor-category-card-enabled {
+  opacity: 1;
+  left: 0;
   &:hover {
     transform: translateX(-3px) translateY(-4px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 4px rgba(0, 0, 0, 0.2);
     animation-name: minor-category-hover;
     animation-duration: 0.3s;
   }
-}
-
-.minor-category-card-enabled {
-  opacity: 1;
-  transform: translateX(0);
 }
