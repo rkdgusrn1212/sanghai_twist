@@ -5,4 +5,9 @@ import useGetProductInfo from './useGetProductInfo';
 
 const useAppDispatch = () => useDispatch();
 
-export { useGetCategoryList, useAppDispatch, useGetCategoryInfo, useGetProductInfo };
+export {
+  useGetCategoryList,
+  useAppDispatch,
+  useGetCategoryInfo,
+  useGetProductInfo,
+};

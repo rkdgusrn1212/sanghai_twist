@@ -11,7 +11,7 @@ function App() {
     <Routes>
       <Route path="/stwist/" element={<HomePage />} />
       <Route path="/list/:code" element={'List'} />
-      <Route path="/detail/:code" element={<DetailPage />} />
+      <Route path="/detail/:code/:isTop" element={<DetailPage />} />
     </Routes>
   );
 }
