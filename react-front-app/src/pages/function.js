@@ -1,7 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
-import { BiSearch } from "react-icons/bi";
+import { BiSearch } from 'react-icons/bi';
 
 function TriggerExample() {
   const renderTooltip = (props) => (
@@ -16,7 +16,10 @@ function TriggerExample() {
       delay={{ show: 250, hide: 400 }}
       overlay={renderTooltip}
     >
-    <Button variant="success"  > <BiSearch /> </Button>
+      <Button variant="success">
+        {' '}
+        <BiSearch />{' '}
+      </Button>
     </OverlayTrigger>
   );
 }
