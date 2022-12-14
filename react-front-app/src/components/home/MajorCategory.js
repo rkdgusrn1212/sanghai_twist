@@ -1,17 +1,12 @@
-import { useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Card from 'react-bootstrap/Card';
 import { run as runHolder } from 'holderjs';
 import { useGetCategoryInfo } from '../../hooks';
+import './MajorCategory.scss';
 
-const cardStyle = {
-  width: 300,
-  marginTop : 10,
-  marginLeft : 5,
-  marginRight : 5
-}
-
-const MajorCategory = ({ category }) => {
+const MajorCategory = ({ category, shrink, onClick }) => {
+  const [selected, setSelected] = useState(false);
   const { categoryInfo, isSuccess } = useGetCategoryInfo({
     code: category.code,
     pg: 1,
@@ -24,8 +19,21 @@ const MajorCategory = ({ category }) => {
     });
   }, []);
 
+  const handleClicked = useCallback(() => {
+    const nextSelected = !selected;
+    setSelected(nextSelected);
+    onClick && onClick(nextSelected);
+  }, [selected, onClick]);
+
   return (
-    <Card style={cardStyle}>
+    <Card
+      className={[
+        'major-category-card',
+        shrink && 'major-category-card-shrink',
+        selected && 'major-category-card-selected',
+      ].join(' ')}
+      onClick={handleClicked}
+    >
       {isSuccess && categoryInfo.products.items[0] ? (
         <LazyLoadImage
           className="card-img-top"
