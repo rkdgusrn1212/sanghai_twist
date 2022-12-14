@@ -2,41 +2,38 @@ import React, { useEffect, useState } from 'react';
 import './Cropper.css';
 import { Nav, Row } from 'react-bootstrap';
 import { useGetProductInfo } from '../../hooks';
+import { render } from 'react-dom';
+import { element } from 'prop-types';
 
 const Side = () => {
-  const [items, setItems] = useState([]);
+  const [resultTop, setResultTop] = useState([]);
   let [inputValue, setInputValue] = useState('');
   let [code, setCode] = useState(null);
-  let [id, setId] = useState({ code: '' });
 
   const { productInfo, isUninitialized, isLoading, isError, isSuccess } =
     useGetProductInfo(code);
-  console.log(productInfo);
 
   const onChange = (e) => {
     setInputValue(e.target.value);
   };
 
-  useEffect(() => setId({ code: inputValue }), [inputValue]);
-
   const onSubmit = (e) => {
     e.preventDefault();
-    setId({ code: inputValue });
-    setItems([...items, id]);
+    console.log(inputValue);
     setInputValue('');
-    console.log(id);
+    const rawVal = localStorage.getItem('topList');
+    if (!rawVal) {
+      localStorage.setItem('topList', JSON.stringify([inputValue]));
+    } else {
+      const decoded = JSON.parse(rawVal);
+      localStorage.setItem('topList', JSON.stringify([...decoded, inputValue]));
+    }
   };
 
-  const itemsMap = items.map((item, i) => <p key={i}>{item.name}</p>);
-
-  //인풋에 값을 입력할 때마다, localStorage에 저장
-  useEffect(() => {
-    window.localStorage.setItem('itemList', JSON.stringify(items));
-  }, [items]);
   return (
     <>
       <div className="parent">
-        name: <div className="todosMap">{itemsMap}</div>
+        name: <div className="todosMap">{}</div>
         <form onSubmit={onSubmit}>
           <input value={inputValue} onChange={onChange}></input>
           <button>저장</button>
@@ -51,6 +48,11 @@ const Side = () => {
             <Nav.Link eventKey="link-2">하의</Nav.Link>
           </Nav.Item>
         </Nav>
+        {JSON.parse(localStorage.getItem('topList')).map((elem, i) => (
+          <div key={i}>
+            <h2>{elem}</h2>
+          </div>
+        ))}
       </div>
     </>
   );
