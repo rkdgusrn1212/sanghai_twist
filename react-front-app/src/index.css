@@ -24,6 +24,12 @@ body {
   font-weight: normal;
 }
 
+@font-face { /* 카페24 심플해 폰트 적용 */
+  font-family: "cafe-simplehae";
+  src: url("./fonts/Cafe24Simplehae.ttf") format("truetype");
+  font-weight: normal;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
