@@ -18,6 +18,12 @@ body {
   font-weight: normal;
 }
 
+@font-face { /* 카페24 써라운드 폰트 적용 */
+  font-family: "cafe-surround";
+  src: url("./fonts/Cafe24SsurroundAir.ttf") format("truetype");
+  font-weight: normal;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

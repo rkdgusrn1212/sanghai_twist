@@ -29,3 +29,12 @@
 
 # 카페 24 클래식 타입 폰트 소유
 /react-front-app/src/fonts/Cafe24Classictype.ttf @rkdgusrn1212
+
+# 카페 24 써라운드 타입 폰트 소유
+/react-front-app/src/fonts/Cafe24SsurroundAir.ttf @rkdgusrn1212
+
+# CommonFooter 소유
+/react-front-app/src/components/common/CommonFooter/ @rkdgusrn1212
+
+# CommonHeader 소유
+/react-front-app/src/components/common/CommonHeader.js @rkdgusrn1212
