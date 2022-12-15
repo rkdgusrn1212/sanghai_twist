@@ -20,7 +20,10 @@ const ProductListItem = ({ product }) => {
           <img src={product.image.high} alt="product" />
         </Col>
         <Col className={styles.id}>
-          <a href={process.env.PUBLIC_URL + '/detail/' + product.code}>
+          <a
+            className={styles.a}
+            href={process.env.PUBLIC_URL + '/detail/' + product.code}
+          >
             {' '}
             {product.name}{' '}
           </a>
@@ -36,7 +39,7 @@ const ProductListItem = ({ product }) => {
         </Col>
         <Col className={styles.provider}>{product.code}</Col>
       </Row>
-      <hr />
+      <hr className={styles.hr} />
     </ListGroup.Item>
   );
 };

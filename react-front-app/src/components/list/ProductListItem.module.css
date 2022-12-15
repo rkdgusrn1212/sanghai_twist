@@ -35,3 +35,14 @@
   margin: 0px auto;
   /* border: solid gainsboro; */
 }
+.hr {
+  border: 0;
+  height: 4px;
+  /* background: #ccc; */
+  background-color: #d3d3d3;
+}
+
+.a {
+  text-decoration-line: none !important;
+  color: lightslategrey !important;
+}

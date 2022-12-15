@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Card from 'react-bootstrap/Card';
 import { run as runHolder } from 'holderjs';
+import { useNavigate } from 'react-router-dom';
 import { useGetCategoryInfo } from '../../hooks';
 import './MinorCategory.scss';
 
@@ -25,12 +26,18 @@ const MinorCategory = ({ category, delay }) => {
     });
   }, []);
 
+  const navigate = useNavigate();
+  const handleClick = useCallback(() => {
+    navigate(process.env.PUBLIC_URL + '/list/' + category.code + '/I/1');
+  }, [navigate, category.code]);
+
   return (
     <Card
       className={[
         'minor-category-card-disabled',
-        enabled && 'minor-category-card-enabled'
+        enabled && 'minor-category-card-enabled',
       ].join(' ')}
+      onClick={handleClick}
     >
       {isSuccess && categoryInfo.products.items[0] ? (
         <LazyLoadImage

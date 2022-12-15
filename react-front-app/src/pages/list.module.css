@@ -13,14 +13,14 @@
   color: red;
 }
 
-hr {
+.hr {
   border: 0;
   height: 4px;
   /* background: #ccc; */
   background-color: #d3d3d3;
 }
 
-a {
+.a {
   text-decoration-line: none !important;
   color: lightslategrey !important;
 }
@@ -30,11 +30,11 @@ a {
 }
 
 .background {
-  height: 70px;
+  height: 40px;
   /* background-color: #eee7df; */
-  background-color: #a4d8ff;
+  background-color: #ffe0b2;
   text-align: center;
-  padding-top: 22px;
+  padding-top: 10px;
   color: black;
   font-size: 13px;
 }
@@ -46,15 +46,6 @@ a {
   color: black;
   font-weight: bolder;
   padding-top: 30px;
-}
-
-.bannerimg {
-  background-image: url(./images/banner.png);
-  background-size: cover;
-  height: 60vh;
-  width: 64vw;
-  background-repeat: no-repeat;
-  background-position: center;
 }
 
 .buttons {
