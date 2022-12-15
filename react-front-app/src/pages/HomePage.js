@@ -7,7 +7,7 @@ import CategoryTree from '../components/home/CategoryTree';
 
 const Home = () => {
   return (
-    <Stack gap={5}>
+    <Stack gap={5} className="mb-5">
       <CommonHeader />
       <Banner />
       <Container fluid="md">
