@@ -23,7 +23,10 @@
     "react-scripts": "5.0.1",
     "sass": "^1.56.2",
     "tiny-debounce": "^0.1.1",
-    "web-vitals": "^2.1.0"
+    "web-vitals": "^2.1.0",
+    "react-slick": "^0.29.0",
+    "slick-carousel": "^1.8.1",
+    "react-icons": "^4.7.1"
   },
   "scripts": {
     "start": "react-scripts start",

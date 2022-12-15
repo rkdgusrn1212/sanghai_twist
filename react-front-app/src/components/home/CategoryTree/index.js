@@ -6,8 +6,6 @@ import KeyDown from './KeyDown';
 
 import { useGetCategoryList } from '../../../hooks';
 
-const DEBOUNCE_TIME = 125;
-
 const CategoryTree = ({
   initialOpenNodes,
   resetOpenNodesOnDataUpdate,
@@ -127,7 +125,7 @@ const CategoryTree = ({
     activeKey,
     focusKey,
     cacheSearch,
-    searchTerm
+    searchTerm,
   ]);
 
   const getKeyDownProps = useCallback(

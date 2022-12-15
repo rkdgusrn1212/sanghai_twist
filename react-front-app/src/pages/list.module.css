@@ -1,0 +1,55 @@
+.route {
+  color: #8c8c8c;
+}
+
+.container {
+  width: 65%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.font {
+  color: red;
+}
+
+.hr {
+  border: 0;
+  height: 4px;
+  /* background: #ccc; */
+  background-color: #d3d3d3;
+}
+
+.a {
+  text-decoration-line: none !important;
+  color: lightslategrey !important;
+}
+
+.sort {
+  padding-left: 0;
+}
+
+.background {
+  height: 40px;
+  /* background-color: #eee7df; */
+  background-color: #ffe0b2;
+  text-align: center;
+  padding-top: 10px;
+  color: black;
+  font-size: 13px;
+}
+
+.banner {
+  height: 100px;
+  text-align: center;
+  font-size: 30px;
+  color: black;
+  font-weight: bolder;
+  padding-top: 30px;
+}
+
+.buttons {
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
