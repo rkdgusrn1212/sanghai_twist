@@ -9,7 +9,7 @@ import CategoryTree from '../components/home/CategoryTree';
 const Home = () => {
   return (
     <Stack gap={5}>
-      <CommonHeader />
+      <CommonHeader active=""/>
       <Banner />
       <Container fluid="md" className="mb-5">
         <Stack gap={5}>
