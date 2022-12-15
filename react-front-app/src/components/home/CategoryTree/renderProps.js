@@ -56,26 +56,16 @@ export const ItemComponent = ({
   </ListGroup.Item>
 );
 
-export const DefaultChildren = ({ search, items, searchTerm }) => {
-  const [keyword, setKeyword] = useState(searchTerm || '');
-  const handleChange = useCallback((e) => {
-    setKeyword(e.target.value);
-  }, []);
-
-  useEffect(() => {
-    search(keyword);
-  }, [search, keyword]);
+export const DefaultChildren = ({ items, searchTerm, handleChange }) => {
   return (
     <>
-      {search && (
-        <Form.Control
-          className="category-tree-search"
-          type="search"
-          placeholder="카테고리 검색어 입력"
-          value={keyword}
-          onChange={handleChange}
-        />
-      )}
+      <Form.Control
+        className="category-tree-search"
+        type="search"
+        placeholder="카테고리 검색어 입력"
+        value={searchTerm}
+        onChange={handleChange}
+      />
       <ListGroup className="category-tree-root">
         {items.map(({ code, ...props }) => (
           <ItemComponent key={code} {...props}></ItemComponent>

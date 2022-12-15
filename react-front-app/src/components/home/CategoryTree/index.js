@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import debounce from 'tiny-debounce';
 
 import { fastWalk, slowWalk } from './walk';
 import { DefaultChildren } from './renderProps';
@@ -26,10 +25,15 @@ const CategoryTree = ({
 }) => {
   const [treeState, setTreeState] = useState({
     openNodes: initialOpenNodes || [],
-    searchTerm: initialSearchTerm,
     activeKey: initialActiveKey || '',
     focusKey: initialFocusKey || '',
   });
+
+  const [searchTerm, setSearchTerm] = useState(initialSearchTerm);
+
+  useEffect(() => {
+    setSearchTerm(initialSearchTerm);
+  }, [initialSearchTerm]);
 
   const { categoryList, isSuccess } = useGetCategoryList();
 
@@ -45,19 +49,13 @@ const CategoryTree = ({
         (Array.isArray(newOpenNodes) && newOpenNodes) || initialOpenNodes || [];
       setTreeState({
         openNodes,
-        searchTerm: '',
         activeKey: activeKey || '',
         focusKey: focusKey || activeKey || '',
       });
+      setSearchTerm('');
     },
     [initialOpenNodes],
   );
-
-  const search = useCallback((value) => {
-    debounce((searchTerm) => {
-      setTreeState((prev) => ({ ...prev, searchTerm }));
-    }, DEBOUNCE_TIME)(value);
-  }, []);
 
   const toggleNode = useCallback(
     (node) => {
@@ -85,7 +83,6 @@ const CategoryTree = ({
         child: categoryList.pants,
       },
     };
-    const { searchTerm } = treeState;
     const tempActiveKey = activeKey || treeState.activeKey;
     const tempFocusKey = focusKey || treeState.focusKey;
     const defaultSearch = cacheSearch ? fastWalk : slowWalk;
@@ -130,6 +127,7 @@ const CategoryTree = ({
     activeKey,
     focusKey,
     cacheSearch,
+    searchTerm
   ]);
 
   const getKeyDownProps = useCallback(
@@ -194,14 +192,18 @@ const CategoryTree = ({
     },
     [treeState],
   );
-  const { searchTerm } = treeState;
+
+  const handleChange = useCallback((e) => {
+    setSearchTerm(e.target.value);
+  }, []);
+
   const items = generateItems();
   const renderProps = hasSearch
     ? {
-        search,
         resetOpenNodes,
         items,
         searchTerm,
+        handleChange,
       }
     : { items, resetOpenNodes };
 

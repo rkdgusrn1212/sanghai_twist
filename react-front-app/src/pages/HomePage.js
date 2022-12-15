@@ -1,5 +1,6 @@
 import Container from 'react-bootstrap/Container';
 import Stack from 'react-bootstrap/Stack';
+import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import CommonHeader from '../components/common/CommonHeader';
 import CommonFooter from '../components/common/CommonFooter';
@@ -8,7 +9,8 @@ import CategoryGrid from '../components/home/CategoryGrid';
 import CategoryTree from '../components/home/CategoryTree';
 
 const Home = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
+  
   return (
     <Stack gap={5}>
       <CommonHeader active="" />
