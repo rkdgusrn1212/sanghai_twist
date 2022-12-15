@@ -1,4 +1,4 @@
-@keyframes slide-in {
+@keyframes category-tree-slide-in {
   from {
     transform: translateY(-100%);
     opacity: 0.5;
@@ -11,7 +11,7 @@
 .category-tree-child-list {
   overflow-y: hidden;
   height: 40px;
-  animation-name: slide-in;
+  animation-name: category-tree-slide-in;
   animation-duration: 0.5s;
 }
 .category-tree-root{
