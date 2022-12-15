@@ -13,9 +13,11 @@ const BannerItemTitle = styled.a`
   text-decoration: none;
   font-size: 32px;
   color: #ffffff;
+  transition-property: font-size, color;
+  transition-duration: 0.1s;
   &:hover {
-    font-size: 40px;
-    color: #FFE0B2;
+    font-size: 36px;
+    color: #ffe0b2;
   }
 `;
 
@@ -59,7 +61,7 @@ const BannerItem = ({ category, ...prop }, ref) => {
         </div>
         <Carousel.Caption ref={ref}>
           <BannerItemTitle>
-            <Badge style={{color:'inherit'}} pill bg="dark">
+            <Badge style={{ color: 'inherit' }} pill bg="dark">
               {content.name}
             </Badge>
           </BannerItemTitle>

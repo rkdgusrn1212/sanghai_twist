@@ -33,16 +33,17 @@ const MajorCategory = ({ category, shrink, onClick, selected }) => {
     >
       {isSuccess && categoryInfo.products.items[0] ? (
         <LazyLoadImage
-          className="card-img-top"
+          className="card-img"
           src={categoryInfo.products.items[0].image.high}
         />
       ) : (
         <Card.Img id="major-category-img-holder" src="holder.js/100px300" />
       )}
-      <Card.Body>
-        <Card.Title style={{fontSize:'inherit'}}>{category.name}</Card.Title>
-        <Card.Text></Card.Text>
-      </Card.Body>
+      <Card.ImgOverlay className="major-category-card-body">
+        <Card.Title className="major-category-card-title">
+          {category.name}
+        </Card.Title>
+      </Card.ImgOverlay>
     </Card>
   );
 };
