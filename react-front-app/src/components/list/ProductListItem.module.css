@@ -1,0 +1,37 @@
+.provider {
+  font-size: 15px;
+  line-height: 45px;
+  font-weight: bolder;
+  text-align: center;
+}
+
+.price {
+  line-height: 45px;
+}
+
+.price2 {
+  font-size: 23px;
+  font-weight: bold !important;
+  justify-content: center;
+  height: 150px;
+  /* padding-left: 0; */
+}
+
+.price3 {
+  text-align: center;
+  padding-right: 30px;
+}
+
+.id {
+  font-size: 15px;
+  line-height: 45px;
+  text-align: center;
+}
+
+.image {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  margin: 0px auto;
+  /* border: solid gainsboro; */
+}

@@ -1,103 +1,64 @@
 .route {
-    color: #8c8c8c;
-}
-
-.image{
-    width: 200px;
-    height: 200px; 
-    display: flex; 
-    margin: 0px auto;
-    /* border: solid gainsboro; */
+  color: #8c8c8c;
 }
 
 .container {
-    width: 65%;
-    margin : 0 auto;
-    display: flex;
-    flex-direction: column;
+  width: 65%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
 }
 
-.font{
-    color: red;
+.font {
+  color: red;
 }
 
-.id{
-    font-size: 15px;
-    line-height: 45px;
-    text-align: center;
+hr {
+  border: 0;
+  height: 4px;
+  /* background: #ccc; */
+  background-color: #d3d3d3;
 }
-
-.price{
- line-height: 45px;
-}
-
-.price2{
-    font-size: 23px;
-    font-weight:bold !important; 
-    justify-content: center;
-    height: 150px;
-    /* padding-left: 0; */
-}
-
-.price3{
-    text-align: center;
-    padding-right: 30px;
-}
-
-.provider{
-    font-size: 15px;
-    line-height: 45px;
-    font-weight: bolder;
-    text-align: center;
-}
-
- hr{
-    border: 0;
-    height: 4px;
-    /* background: #ccc; */
-    background-color: #d3d3d3;
-} 
 
 a {
-    text-decoration-line: none !important;
-    color :lightslategrey!important;
+  text-decoration-line: none !important;
+  color: lightslategrey !important;
 }
 
-.sort{
-    padding-left: 0;
+.sort {
+  padding-left: 0;
 }
 
-.background{
-    height: 70px;
-    /* background-color: #eee7df; */
-    background-color: #a4d8ff;
-    text-align: center;
-    padding-top: 22px;
-    color: black;
-    font-size: 13px;
+.background {
+  height: 70px;
+  /* background-color: #eee7df; */
+  background-color: #a4d8ff;
+  text-align: center;
+  padding-top: 22px;
+  color: black;
+  font-size: 13px;
 }
 
-.banner{
-    height: 100px;
-    text-align: center;
-    font-size: 30px;
-    color: black;
-    font-weight: bolder;
-    padding-top: 30px;
+.banner {
+  height: 100px;
+  text-align: center;
+  font-size: 30px;
+  color: black;
+  font-weight: bolder;
+  padding-top: 30px;
 }
 
-.bannerimg{
-    background-image: url(./images/banner.png);
-    background-size: cover;
-    height: 60vh;
-    width: 64vw;
-    background-repeat: no-repeat;
-    background-position: center;
+.bannerimg {
+  background-image: url(./images/banner.png);
+  background-size: cover;
+  height: 60vh;
+  width: 64vw;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-.buttons{
-    text-align: center;
-    padding-top: 5px;
-    padding-bottom: 5px;
+.buttons {
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
-
