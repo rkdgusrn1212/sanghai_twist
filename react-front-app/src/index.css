@@ -12,6 +12,12 @@ body {
   user-select: none;
 }
 
+@font-face { /* 카페24 클래식 폰트 적용 */
+  font-family: "cafe-classic";
+  src: url("./fonts/Cafe24Classictype.ttf") format("truetype");
+  font-weight: normal;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
