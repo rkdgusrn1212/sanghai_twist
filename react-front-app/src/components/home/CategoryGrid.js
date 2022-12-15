@@ -1,6 +1,7 @@
 import Spinner from 'react-bootstrap/Spinner';
 import Stack from 'react-bootstrap/Stack';
-import { useCallback, useState, useEffect } from 'react';
+import { useCallback, useState, useEffect, useRef, useMemo } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useGetCategoryList } from '../../hooks';
 import MajorCategory from './MajorCategory';
 import MinorCategory from './MinorCategory';
@@ -24,14 +25,17 @@ const findLeafCat = (category, leafList, parent) => {
 };
 
 const CategoryGrid = () => {
+  let { hash } = useLocation();
   const [shrink, setShrink] = useState(false);
   const [selected, setSelected] = useState(null);
   const [leafCategories, setLeafCategories] = useState([]);
 
-  const { categoryList, isSuccess } = useGetCategoryList();
+  const { categoryList } = useGetCategoryList();
+
+  const gridRef = useRef(null);
 
   useEffect(() => {
-    if (!isSuccess) return;
+    if (!categoryList) return;
     let catList = [];
     for (let sub of categoryList.categories) {
       if (sub.code === selected) {
@@ -39,22 +43,40 @@ const CategoryGrid = () => {
       }
     }
     setLeafCategories(catList);
-  }, [selected, categoryList, isSuccess, setLeafCategories]);
+  }, [selected, categoryList, setLeafCategories]);
 
-  const handleClick = useCallback((key, nextSelected) => {
-    if (nextSelected) {
-      setSelected(key);
-      setShrink(true);
-    } else {
-      setSelected(null);
-      setShrink(false);
+  const keyMap = useMemo(() => {
+    if(!categoryList) return null;
+    const result = {};
+    for(let cat of categoryList.categories){
+      result[cat.code] = cat.name;
     }
-  }, []);
+    return result;
+  },[categoryList]);
+
+  const handleClick = useCallback(
+    (key, nextSelected) => {
+      if (!keyMap || !keyMap[key]) return;
+      if (nextSelected) {
+        setSelected(key);
+        setShrink(true);
+        gridRef.current?.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        setSelected(null);
+        setShrink(false);
+      }
+    },
+    [keyMap],
+  );
+
+  useEffect(() => {
+    hash && handleClick(parseInt(hash.slice(1)), true); //#만있을때도 hash는 false임.
+  }, [hash, handleClick]);
 
   return (
-    <Stack gap={2}>
+    <Stack gap={2} ref={gridRef}>
       <div className="d-flex flex-wrap">
-        {isSuccess ? (
+        {categoryList ? (
           categoryList.categories.map((category) => (
             <MajorCategory
               key={category.code}
@@ -71,7 +93,7 @@ const CategoryGrid = () => {
         )}
       </div>
       <div className="d-flex flex-wrap">
-        {isSuccess ? (
+        {categoryList ? (
           leafCategories.map((category, i) => (
             <MinorCategory
               key={category.code}

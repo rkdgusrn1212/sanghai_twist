@@ -8,18 +8,18 @@ import { useGetCategoryList } from '../../../hooks';
 
 const CategoryTree = ({
   initialOpenNodes,
-  resetOpenNodesOnDataUpdate,
   openNodes,
   activeKey,
   focusKey,
-  cacheSearch,
   locale,
   matchSearch,
   initialActiveKey,
   initialFocusKey,
-  hasSearch,
-  disableKeyboard,
-  initialSearchTerm,
+  hasSearch = true,
+  cacheSearch = true,
+  resetOpenNodesOnDataUpdate = false,
+  disableKeyboard = false,
+  initialSearchTerm = '',
 }) => {
   const [treeState, setTreeState] = useState({
     openNodes: initialOpenNodes || [],
@@ -212,15 +212,6 @@ const CategoryTree = ({
       {DefaultChildren(renderProps)}
     </KeyDown>
   );
-};
-
-CategoryTree.defaultProps = {
-  children: DefaultChildren,
-  hasSearch: true,
-  cacheSearch: true,
-  resetOpenNodesOnDataUpdate: false,
-  disableKeyboard: false,
-  initialSearchTerm: '',
 };
 
 export default CategoryTree;
