@@ -83,7 +83,7 @@ const CategoryTree = ({
         child: categoryList.top,
       },
       pants: {
-        name: '바지',
+        name: '하의',
         code: 'pants',
         child: categoryList.pants,
       },

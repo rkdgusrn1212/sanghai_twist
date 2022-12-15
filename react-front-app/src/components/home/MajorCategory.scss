@@ -1,0 +1,22 @@
+.major-category-card {
+  width: 300px;
+  height: 400px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.05), 0 6px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  font-size:20px;
+  transition-property: 'font-size box-shadow width height';
+  transition-duration: 0.3s;
+}
+
+.major-category-card-shrink {
+  width: 150px;
+  height: 200px;
+  font-size:10px;
+}
+
+.major-category-card-selected {
+  transform: translateY(-8px) translateX(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 4px rgba(0, 0, 0, 0.2);
+}
