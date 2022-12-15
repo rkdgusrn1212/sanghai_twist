@@ -4,8 +4,23 @@ import { Button, Modal } from 'react-bootstrap/';
 function DetailModal(props) {
   const [show, setShow] = useState(true);
 
-  const handleClose = () => setShow(false);
+  console.log(props.productName[2]);
+  // 모달창을 열거나 다시 열 때 사용
+  if (show == false && props.productName[2] == 1) {
+    setShow(true);
+  }
+
+  // 모달창을 닫을 때 사용
+  const handleClose = () => {
+    setShow(false);
+    props.productName[2] = 0;
+    localStorage.setItem('isClose', 2);
+    const closeModel = localStorage.getItem('isClose');
+    console.log(closeModel);
+  };
+
   const moveShopingmall = () => {
+    handleClose();
     window.open(
       `https://www.11st.co.kr/products/ + ${props.productName[1]}`,
       '_blank',
