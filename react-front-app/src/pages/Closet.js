@@ -23,7 +23,7 @@ function Closet() {
 
   return (
     <div className="Clset">
-      <CommonHeader />
+      <CommonHeader active="/closet" />
       <Container fluid="md">
         <h1 className="title">나의 옷장</h1>
         <HowTo />
