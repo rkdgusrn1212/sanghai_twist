@@ -8,11 +8,10 @@ import Button from 'react-bootstrap/esm/Button';
 import axios from 'axios';
 import TriggerExample from './Listcat/popover';
 import server from '../server.json';
-import Banner from "./Listcat/bannerFun"
+import Banner from './Listcat/bannerFun';
 import styles from './list.module.css';
 import { useParams } from 'react-router-dom';
 import { useGetCategoryInfo } from '../hooks';
-
 
 const ListPage = () => {
   const { code, pg, srt } = useParams();
@@ -30,7 +29,7 @@ const ListPage = () => {
   let copy = [];
   //console.log(data)
   let [counter, setCounter] = useState(0);
-  
+
   //라이브러리 이벤트 속성과 디자인 요소 스타일링
   const settings = {
     dots: true,
@@ -44,49 +43,44 @@ const ListPage = () => {
     pauseOnHover: true,
   };
 
-    //페이징 미완성
+  //페이징 미완성
 
-    // useEffect ( () => {
-    //   console.log(`http://192.168.0.115:8080/stwist-api/category/${code}?size=12&pg=${counter}&srt=${srt}`)
-    //   axios.get(`http://192.168.0.115:8080/stwist-api/category/${code}?size=12&pg=${counter}&srt=${srt}`)
-    //   .then((response) => {
-    //     console.log(counter)
-    //     console.log('받아오는 데이터값')
-    //     console.log(response.data.products.items);
-    //     console.log(data);
-        
-    //     if(!data){
-    //       let copy = [...data, ...response.data.products.items];
-    //     }else{
-    //       let copy = [...response.data.products.items];
-    //     }
-        
-    //     setData(copy);
-    //   })
-    //   // .catch ( () => {console.log('데이터 전송 실패')})
-    // },[counter])
+  // useEffect ( () => {
+  //   console.log(`http://192.168.0.115:8080/stwist-api/category/${code}?size=12&pg=${counter}&srt=${srt}`)
+  //   axios.get(`http://192.168.0.115:8080/stwist-api/category/${code}?size=12&pg=${counter}&srt=${srt}`)
+  //   .then((response) => {
+  //     console.log(counter)
+  //     console.log('받아오는 데이터값')
+  //     console.log(response.data.products.items);
+  //     console.log(data);
 
+  //     if(!data){
+  //       let copy = [...data, ...response.data.products.items];
+  //     }else{
+  //       let copy = [...response.data.products.items];
+  //     }
+
+  //     setData(copy);
+  //   })
+  //   // .catch ( () => {console.log('데이터 전송 실패')})
+  // },[counter])
 
   //숫자 컴마 정규화식
   const convertPrice = (price) => {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   };
 
-
   if (isSuccess) {
     //console.log(categoryInfo.products.items)
     return (
-      
-
       <div class="container" className={styles.container}>
         <div className={styles.background}>
-        <Banner/>
-          </div>
+          <Banner />
+        </div>
         <div className={styles.banner}>S,TWIST</div>
         <div className={styles.bannerimg}></div>
         <hr />
         <div>
-          
           <SlHome /> HOME > {categoryInfo.category.name}
         </div>
         <br />
@@ -153,7 +147,11 @@ const ListPage = () => {
 
           <div className={styles.buttons}>
             {' '}
-            <Button type="button" class="primary" onClick = { () => setCounter(counter+1)} >
+            <Button
+              type="button"
+              class="primary"
+              onClick={() => setCounter(counter + 1)}
+            >
               ㅤ˅ㅤ
             </Button>
           </div>
