@@ -1,6 +1,5 @@
 import { Card, Button, Dropdown, Spinner } from 'react-bootstrap/';
-import { useState, useEffect } from 'react';
-import { Provider, useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -9,40 +8,31 @@ import { useGetProductInfo } from '../../hooks';
 import CommonHeader from '../../components/common/CommonHeader';
 import StarRate from '../../components/common/useSetStar';
 import DetailModal from '../DetailPage/DetailModal';
-import { number } from 'prop-types';
-import { set } from 'forever/lib/forever/cli';
 
 const Detail = () => {
   let { code, isTop } = useParams();
   const { productInfo, isUninitialized, isLoading, isError, isSuccess } =
-    useGetProductInfo(code);
-  console.log(isTop);
-  console.log(code);
-  console.log(productInfo);
-  console.log(isSuccess);
+    useGetProductInfo(code); // 상품을 가져오는 훅
 
   let [data, setData] = useState(false); // 하위 컴포넌트(DetailModal)를 적용하기 위한 분기 조건
-  let [productName, setProductName] = useState(); // 옵션보기에서 선택한 상품 정보
+  let [productName, setProductName] = useState(''); // 옵션보기에서 선택한 상품 정보
   // const [data, setData] = useState([{ code: '' }]); // 장바구니 담아진 데이터
-  // let kind = '';
 
+  // 옵션 선택시 발생하는 클릭 이벤트 핸들러 함수
   function MoveShopPage(props) {
-    console.log(props);
     MoveShop(props);
   }
+
+  // 옵션 선택한 상품의 이름을 담는 함수
   function MoveShop(props) {
-    console.log(props);
-    console.log(data);
     if (props != undefined) {
       setData(true);
-      // console.log(data);
-      // console.log(productName);
+      setProductName(props);
     }
   }
 
+  // LocalStorage에 상의 하의를 구분하여 담아주는 함수
   function PutDataToLocal(props) {
-    console.log(props);
-
     if (isTop == 0) {
       const rawTopVal = localStorage.getItem('topList');
       if (!rawTopVal) {
@@ -89,9 +79,7 @@ const Detail = () => {
       <>
         <CommonHeader />
         <Banner />
-        <br />
-        <br />
-        <br />
+        <MarinBottom />
         <Card style={{ width: '30rem', margin: 'auto' }}>
           <Card.Img variant="top" src={productInfo.image} />
           <StarRate data={productInfo.satisfaction} />
@@ -106,7 +94,11 @@ const Detail = () => {
           >
             {kindProduct}담기
           </Button>
-          <div>{data === true ? <DetailModal /> : null}</div>
+          <div>
+            {data === true && productName !== undefined ? (
+              <DetailModal productName={[productName, code]} />
+            ) : null}
+          </div>
           <Dropdown>
             <Dropdown.Toggle variant="success" id="dropdown-basic">
               옵션보기
@@ -128,4 +120,7 @@ const Div = styled.div`
   align-items: center;
   position: relative;
   top: 40vh;
+`;
+const MarinBottom = styled.div`
+  margin-bottom: 50px;
 `;

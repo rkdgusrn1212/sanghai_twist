@@ -1,27 +1,31 @@
 import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
+import { Button, Modal } from 'react-bootstrap/';
 
 function DetailModal(props) {
-  // console.log(props.item);
   const [show, setShow] = useState(true);
 
   const handleClose = () => setShow(false);
-  //   const handleShow = () => setShow(true);
+  const moveShopingmall = () => {
+    window.open(
+      `https://www.11st.co.kr/products/ + ${props.productName[1]}`,
+      '_blank',
+    );
+  };
 
   return (
     <>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>{props.productName[0]}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Body>상품을 선택하셨습니다</Modal.Body>
+        <Modal.Body>해당 상품 페이지로 이동하시겠습니까?</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            닫기
           </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
+          <Button variant="primary" onClick={moveShopingmall}>
+            이동하기
           </Button>
         </Modal.Footer>
       </Modal>
