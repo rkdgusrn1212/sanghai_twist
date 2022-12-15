@@ -1,17 +1,18 @@
-import { useParams } from 'react-router-dom';
-import { useGetCategoryInfo } from '../hooks';
-import styles from './list.module.css';
 import React, { useState, useEffect } from 'react';
 import { SlHome } from 'react-icons/sl';
 import { BsCartCheckFill } from 'react-icons/bs';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import TriggerExample from './function';
-import server from '../server.json';
 import Button from 'react-bootstrap/esm/Button';
 import axios from 'axios';
-import {useGetProductionInfo} from '../hooks'
+import TriggerExample from './Listcat/popover';
+import server from '../server.json';
+import Banner from "./Listcat/bannerFun"
+import styles from './list.module.css';
+import { useParams } from 'react-router-dom';
+import { useGetCategoryInfo } from '../hooks';
+
 
 const ListPage = () => {
   const { code, pg, srt } = useParams();
@@ -22,28 +23,34 @@ const ListPage = () => {
       pg: pg,
       srt: srt,
     });
+
   // console.log(categoryInfo)
 
   const [data, setData] = useState([]);
   let copy = [];
-  console.log(data)
+  //console.log(data)
   let [counter, setCounter] = useState(0);
   
+  //라이브러리 이벤트 속성과 디자인 요소 스타일링
+  const settings = {
+    dots: true,
+    arrows: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    pauseOnHover: true,
+  };
 
-    //2부터 버튼클릭시 1씩 증가
-    if(isSuccess){
-      console.log('check')
-    console.log(categoryInfo.products.items)
-
-  }
+    //페이징 미완성
 
     // useEffect ( () => {
     //   console.log(`http://192.168.0.115:8080/stwist-api/category/${code}?size=12&pg=${counter}&srt=${srt}`)
     //   axios.get(`http://192.168.0.115:8080/stwist-api/category/${code}?size=12&pg=${counter}&srt=${srt}`)
     //   .then((response) => {
     //     console.log(counter)
-
-
     //     console.log('받아오는 데이터값')
     //     console.log(response.data.products.items);
     //     console.log(data);
@@ -60,22 +67,26 @@ const ListPage = () => {
     // },[counter])
 
 
-  //정규화식
+  //숫자 컴마 정규화식
   const convertPrice = (price) => {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   };
 
- // <a href={`/stwist/list/${code}/L/1`}> 낮은 가격순 </a>|{' '}
 
   if (isSuccess) {
     //console.log(categoryInfo.products.items)
     return (
+      
+
       <div class="container" className={styles.container}>
-        <div className={styles.background}>월,수,금 7시 업데이트!▶</div>
+        <div className={styles.background}>
+        <Banner/>
+          </div>
         <div className={styles.banner}>S,TWIST</div>
         <div className={styles.bannerimg}></div>
         <hr />
         <div>
+          
           <SlHome /> HOME > {categoryInfo.category.name}
         </div>
         <br />
@@ -153,4 +164,5 @@ const ListPage = () => {
     return <h1> 로딩 중 ••••</h1>;
   }
 };
+
 export default ListPage;
