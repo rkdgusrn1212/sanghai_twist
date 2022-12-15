@@ -10,19 +10,15 @@ import { useGetProductInfo } from '../../hooks';
 function Cropper(props) {
   const { productInfo, isUninitialized, isLoading, isError, isSuccess } =
     useGetProductInfo(props.botElem);
-  const [elem, setElem] = useState(null);
-  const [src, selectFile] = useState(null);
+  const [src, setSrc] = useState(null);
 
   const handleFileChange = (e) => {
-    selectFile(URL.createObjectURL(e.target.files[0]));
+    setSrc(URL.createObjectURL(e.target.files[0]));
   };
   useEffect(() => {
-    setElem(props.botElem);
+    productInfo && setSrc(productInfo.image);
   }, [props]);
 
-  useEffect(() => {
-    // selectFile(productInfo.image);
-  }, [elem]);
   const [image, setImage] = useState(null);
   const [crop, setCrop] = useState({ aspect: NaN });
   const [result, setResult] = useState(null);

@@ -11,13 +11,9 @@ function Closet() {
   const [topElem, setTopElem] = useState(null);
   const [botElem, setBotElem] = useState(null);
 
-  useEffect(() => {
-    console.log(topElem);
-  }, [topElem]);
+  useEffect(() => {}, [topElem]);
 
-  useEffect(() => {
-    console.log(botElem);
-  }, [botElem]);
+  useEffect(() => {}, [botElem]);
 
   const sendTopElem = (topElem) => {
     setTopElem(topElem);
@@ -30,8 +26,7 @@ function Closet() {
     <div className="Clset">
       <CommonHeader />
       <Container fluid="md">
-        <h1 className="title">나의 옷장</h1> <div>{topElem}</div>
-        <div>{botElem}</div>
+        <h1 className="title">나의 옷장</h1>
         <Row xs={1} md={2}>
           <Col md={7}>
             <Col>

@@ -4,26 +4,20 @@ import 'react-image-crop/dist/ReactCrop.css';
 import './Cropper.css';
 import { Form, Container, Row, Col, Button } from 'react-bootstrap';
 import 'cropperjs';
-import styled from 'styled-components';
 import { useGetProductInfo } from '../../hooks';
 
 function Cropper(props) {
   const { productInfo, isUninitialized, isLoading, isError, isSuccess } =
     useGetProductInfo(props.topElem);
-  const [elem, setElem] = useState(null);
-  const [src, selectFile] = useState(null);
+  const [src, setSrc] = useState(null);
 
   const handleFileChange = (e) => {
-    selectFile(URL.createObjectURL(e.target.files[0]));
+    setSrc(URL.createObjectURL(e.target.files[0]));
   };
 
   useEffect(() => {
-    setElem(props.topElem);
+    productInfo && setSrc(productInfo.image);
   }, [props]);
-
-  useEffect(() => {
-    selectFile(productInfo.image);
-  }, [elem]);
 
   const [image, setImage] = useState(null);
   const [crop, setCrop] = useState({ aspect: NaN });
@@ -54,11 +48,9 @@ function Cropper(props) {
 
   if (isSuccess === false) {
     return (
-      <>
-        <div>
-          <h3>해당 상품에 접속중입니다.</h3>
-        </div>
-      </>
+      <div>
+        <h3>해당 상품에 접속중입니다.</h3>
+      </div>
     );
   } else {
     return (
