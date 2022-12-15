@@ -3,17 +3,32 @@ import './Cropper.css';
 import { Card, Tab, Tabs } from 'react-bootstrap';
 import { useGetProductInfo } from '../../hooks';
 import SideDetail from './SideDetail';
-const Side = () => {
+
+const Side = (props) => {
   let [inputValue, setInputValue] = useState('');
   let [code, setCode] = useState(null);
-
+  const [tElem, setTElem] = useState(null);
+  const [bElem, setBElem] = useState(null);
   const { productInfo, isUninitialized, isLoading, isError, isSuccess } =
     useGetProductInfo(code);
-
   const onChange = (e) => {
     setInputValue(e.target.value);
   };
 
+  useEffect(() => {
+    props.sendTopElem(tElem);
+  }, [tElem]);
+
+  useEffect(() => {
+    props.sendBotElem(bElem);
+  }, [bElem]);
+
+  function sendTElem(elem) {
+    setTElem(elem);
+  }
+  function sendBElem(elem) {
+    setBElem(elem);
+  }
   const onSubmit = (e) => {
     e.preventDefault();
     console.log(inputValue);
@@ -51,7 +66,12 @@ const Side = () => {
           <Tab eventKey="home" title="상의">
             {JSON.parse(localStorage.getItem('topList')) &&
               JSON.parse(localStorage.getItem('topList')).map((elem) => (
-                <Card key={elem} className="cards">
+                <Card
+                  key={elem}
+                  id={elem}
+                  className="cards"
+                  onClick={() => sendTElem(elem)}
+                >
                   <SideDetail elem={elem} />
                 </Card>
               ))}
@@ -59,7 +79,12 @@ const Side = () => {
           <Tab eventKey="profile" title="하의">
             {JSON.parse(localStorage.getItem('bottomList')) &&
               JSON.parse(localStorage.getItem('bottomList')).map((elem) => (
-                <Card key={elem}>
+                <Card
+                  key={elem}
+                  id={elem}
+                  className="cards"
+                  onClick={() => sendBElem(elem)}
+                >
                   <SideDetail elem={elem} />
                 </Card>
               ))}

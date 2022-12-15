@@ -1,15 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 import './Cropper.css';
-import { Form, Container, Row, Col, Nav } from 'react-bootstrap';
+import { Form, Container, Row, Col, Button } from 'react-bootstrap';
+import 'cropperjs';
+import styled from 'styled-components';
+import { useGetProductInfo } from '../../hooks';
 
-const Cropper = () => {
+function Cropper(props) {
+  const { productInfo, isUninitialized, isLoading, isError, isSuccess } =
+    useGetProductInfo(props.botElem);
+  const [elem, setElem] = useState(null);
   const [src, selectFile] = useState(null);
+
   const handleFileChange = (e) => {
     selectFile(URL.createObjectURL(e.target.files[0]));
   };
+  useEffect(() => {
+    setElem(props.botElem);
+  }, [props]);
 
+  useEffect(() => {
+    // selectFile(productInfo.image);
+  }, [elem]);
   const [image, setImage] = useState(null);
   const [crop, setCrop] = useState({ aspect: NaN });
   const [result, setResult] = useState(null);
@@ -45,6 +58,7 @@ const Cropper = () => {
           <Col>
             <ReactCrop
               className="originImg"
+              crossorigin="anonymous"
               src={src}
               onImageLoaded={setImage}
               crop={crop}
@@ -80,6 +94,6 @@ const Cropper = () => {
       </Row>
     </Container>
   );
-};
+}
 
 export default Cropper;

@@ -1,16 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 import './Cropper.css';
-import { Form, Container, Row, Col } from 'react-bootstrap';
+import { Form, Container, Row, Col, Button } from 'react-bootstrap';
 import 'cropperjs';
 import styled from 'styled-components';
+import { useGetProductInfo } from '../../hooks';
 
-const Cropper = () => {
+function Cropper(props) {
+  const { productInfo, isUninitialized, isLoading, isError, isSuccess } =
+    useGetProductInfo(props.topElem);
+  const [elem, setElem] = useState(null);
   const [src, selectFile] = useState(null);
+
   const handleFileChange = (e) => {
     selectFile(URL.createObjectURL(e.target.files[0]));
   };
+
+  useEffect(() => {
+    setElem(props.topElem);
+  }, [props]);
+
+  useEffect(() => {
+    selectFile(productInfo.image);
+  }, [elem]);
 
   const [image, setImage] = useState(null);
   const [crop, setCrop] = useState({ aspect: NaN });
@@ -23,7 +36,6 @@ const Cropper = () => {
     canvas.width = crop.width;
     canvas.height = crop.height;
     const ctx = canvas.getContext('2d');
-
     ctx.drawImage(
       image,
       crop.x * scaleX,
@@ -36,55 +48,59 @@ const Cropper = () => {
       crop.height,
     );
 
-    const base64Image = canvas.toDataURL('image/jpeg');
+    const base64Image = canvas.toDataURL('image/png');
     setResult(base64Image);
   }
 
-  return (
-    <Container>
-      <Row>
-        <Col className="input">
-          <Form.Group
-            controlId="formFile"
-            className="mb-3"
-            onChange={handleFileChange}
-            accept="image/*"
-          >
-            <Form.Label>상의 선택</Form.Label>
-            <Form.Control type="file" />
-          </Form.Group>
-        </Col>{' '}
-      </Row>{' '}
-      {/* <Row>
-        <Col xs={6} />
-        <Col className="zoom" xs={6}>
-          <Button variant="primary">+</Button>
-          <Button variant="danger">-</Button>
-        </Col>
-      </Row> */}
-      <Row>
-        {src && (
-          <Col className="originArea">
-            <ReactCrop
-              className="originImg"
-              src={src}
-              onImageLoaded={setImage}
-              crop={crop}
-              onChange={setCrop}
-              onDragStart={getCroppedImg}
-              onDragEnd={getCroppedImg}
-              dragCrop={getCroppedImg}
-            />
-          </Col>
-        )}{' '}
-        {result && (
-          <Col className="resultImgTop">
-            <img src={result} alt="Cropped Image" className="img-fluid-top" />
-          </Col>
-        )}
-      </Row>
-    </Container>
-  );
-};
+  if (isSuccess === false) {
+    return (
+      <>
+        <div>
+          <h3>해당 상품에 접속중입니다.</h3>
+        </div>
+      </>
+    );
+  } else {
+    return (
+      <Container>
+        <Row>
+          <Col className="input">
+            <Form.Group
+              controlId="formFile"
+              className="mb-3"
+              onChange={handleFileChange}
+              accept="image/*"
+            >
+              <Form.Label>상의 선택</Form.Label>
+              <Form.Control type="file" />
+            </Form.Group>
+          </Col>{' '}
+        </Row>{' '}
+        <Row>
+          {src && (
+            <Col className="originArea">
+              <ReactCrop
+                className="originImg"
+                crossorigin="anonymous"
+                src={src}
+                onImageLoaded={setImage}
+                crop={crop}
+                onChange={setCrop}
+                onDragStart={getCroppedImg}
+                onDragEnd={getCroppedImg}
+                dragCrop={getCroppedImg}
+              />
+            </Col>
+          )}{' '}
+          {result && (
+            <Col className="resultImgTop">
+              <img src={result} alt="Cropped Image" className="img-fluid-top" />
+            </Col>
+          )}
+        </Row>
+      </Container>
+    );
+  }
+}
 
 export default Cropper;
