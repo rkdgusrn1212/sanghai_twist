@@ -5,8 +5,7 @@ import CropperBottom from '../components/closet/CropperBottom';
 import Side from '../components/closet/Side';
 import { Container, Row, Col } from 'react-bootstrap';
 import CommonHeader from '../components/common/CommonHeader';
-import { useGetProductInfo } from '../hooks';
-
+import HowTo from '../components/closet/HowTo';
 function Closet() {
   const [topElem, setTopElem] = useState(null);
   const [botElem, setBotElem] = useState(null);
@@ -27,6 +26,7 @@ function Closet() {
       <CommonHeader />
       <Container fluid="md">
         <h1 className="title">나의 옷장</h1>
+        <HowTo />
         <Row xs={1} md={2}>
           <Col md={7}>
             <Col>

@@ -71,3 +71,16 @@
   background-color: #ddd;
   border-radius: 30px;
 }
+
+.form-label {
+  width: 300px;
+  text-align: center;
+}
+.howText {
+  line-height: 100%;
+}
+
+.step1 {
+  width: 1000px;
+  height: 700px;
+}

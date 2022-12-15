@@ -63,7 +63,7 @@ function Cropper(props) {
               onChange={handleFileChange}
               accept="image/*"
             >
-              <Form.Label>상의 선택</Form.Label>
+              <Form.Label className="fileTitle">상의 선택</Form.Label>
               <Form.Control type="file" />
             </Form.Group>
           </Col>{' '}
