@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Form from 'react-bootstrap/Form';
 import expandIcon from './expand.png';
@@ -56,11 +56,15 @@ export const ItemComponent = ({
   </ListGroup.Item>
 );
 
-export const defaultChildren = ({ search, items }) => {
-  const onSearch = (e) => {
-    const { value } = e.target;
-    search && search(value);
-  };
+export const DefaultChildren = ({ search, items, searchTerm }) => {
+  const [keyword, setKeyword] = useState(searchTerm || '');
+  const handleChange = useCallback((e) => {
+    setKeyword(e.target.value);
+  }, []);
+
+  useEffect(() => {
+    search(keyword);
+  }, [search, keyword]);
   return (
     <>
       {search && (
@@ -68,7 +72,8 @@ export const defaultChildren = ({ search, items }) => {
           className="category-tree-search"
           type="search"
           placeholder="카테고리 검색어 입력"
-          onChange={onSearch}
+          value={keyword}
+          onChange={handleChange}
         />
       )}
       <ListGroup className="category-tree-root">

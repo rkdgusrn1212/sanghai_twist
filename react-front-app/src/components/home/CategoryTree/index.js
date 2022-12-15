@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import debounce from 'tiny-debounce';
 
 import { fastWalk, slowWalk } from './walk';
-import { defaultChildren } from './renderProps';
+import { DefaultChildren } from './renderProps';
 import KeyDown from './KeyDown';
 
 import { useGetCategoryList } from '../../../hooks';
@@ -22,10 +22,11 @@ const CategoryTree = ({
   initialFocusKey,
   hasSearch,
   disableKeyboard,
+  initialSearchTerm,
 }) => {
   const [treeState, setTreeState] = useState({
     openNodes: initialOpenNodes || [],
-    searchTerm: '',
+    searchTerm: initialSearchTerm,
     activeKey: initialActiveKey || '',
     focusKey: initialFocusKey || '',
   });
@@ -52,15 +53,11 @@ const CategoryTree = ({
     [initialOpenNodes],
   );
 
-  const search = useCallback(
-    (value) => {
-      debounce(
-        (searchTerm) => setTreeState({ ...treeState, searchTerm }),
-        DEBOUNCE_TIME,
-      )(value);
-    },
-    [treeState],
-  );
+  const search = useCallback((value) => {
+    debounce((searchTerm) => {
+      setTreeState((prev) => ({ ...prev, searchTerm }));
+    }, DEBOUNCE_TIME)(value);
+  }, []);
 
   const toggleNode = useCallback(
     (node) => {
@@ -209,20 +206,21 @@ const CategoryTree = ({
     : { items, resetOpenNodes };
 
   return disableKeyboard ? (
-    defaultChildren(renderProps)
+    DefaultChildren(renderProps)
   ) : (
     <KeyDown {...getKeyDownProps(items)}>
-      {defaultChildren(renderProps)}
+      {DefaultChildren(renderProps)}
     </KeyDown>
   );
 };
 
 CategoryTree.defaultProps = {
-  children: defaultChildren,
+  children: DefaultChildren,
   hasSearch: true,
   cacheSearch: true,
   resetOpenNodesOnDataUpdate: false,
   disableKeyboard: false,
+  initialSearchTerm: '',
 };
 
 export default CategoryTree;

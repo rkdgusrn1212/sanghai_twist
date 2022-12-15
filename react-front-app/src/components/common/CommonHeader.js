@@ -79,7 +79,7 @@ const CommonHeader = ({ active }) => {
             />
             <Button
               type="submit"
-              variant="buttonPrimary"
+              variant="outline-buttonPrimary"
               style={{
                 color: 'white',
                 whiteSpace: 'nowrap',
