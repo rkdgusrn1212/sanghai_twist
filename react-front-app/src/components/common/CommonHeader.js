@@ -19,6 +19,10 @@ const CommonHeader = ({ active }) => {
         name: 'My Closet',
         active: false,
       },
+      '/detail': {
+        name: 'detail',
+        active: false,
+      },
     };
     result[active].active = true;
     return result;

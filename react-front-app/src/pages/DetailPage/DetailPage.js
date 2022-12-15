@@ -1,5 +1,5 @@
 import { Card, Button, Dropdown, Spinner, Container } from 'react-bootstrap/';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -74,7 +74,7 @@ const Detail = () => {
   if (isSuccess === false) {
     return (
       <>
-        <CommonHeader />
+        <CommonHeader active="/detail" />
         <Div>
           <Spinner style={{}} animation="border" role="status">
             <span className="sr-only">Loading...</span>
@@ -96,7 +96,7 @@ const Detail = () => {
     ));
     return (
       <>
-        <CommonHeader />
+        <CommonHeader active="/detail" />
         <Banner />
         <Container fluid="md">
           <MarginBottom />
