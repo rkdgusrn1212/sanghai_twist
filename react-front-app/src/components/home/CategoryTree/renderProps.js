@@ -53,6 +53,8 @@ export const ItemComponent = ({
             process.env.PUBLIC_URL +
               '/list/' +
               codeArr[codeArr.length - 1] +
+              '/' +
+              (codeArr[0] === 'top') +
               '/I/1',
           );
         e.stopPropagation();

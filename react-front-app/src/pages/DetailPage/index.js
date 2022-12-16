@@ -7,7 +7,7 @@ import Banner from '../../components/home/Banner';
 import { useGetProductInfo } from '../../hooks';
 import CommonHeader from '../../components/common/CommonHeader';
 import StarRate from '../../components/common/useSetStar';
-import DetailModal from '../DetailPage/DetailModal';
+import DetailModal from './DetailModal';
 
 const Detail = () => {
   let { code, isTop } = useParams();
@@ -40,7 +40,7 @@ const Detail = () => {
 
   // LocalStorage에 상의 하의를 구분하여 담아주는 함수
   function PutDataToLocal(props) {
-    if (isTop == 0) {
+    if (isTop === 'true') {
       const rawTopVal = localStorage.getItem('topList');
       console.log(rawTopVal);
       console.log(props);
@@ -74,7 +74,7 @@ const Detail = () => {
   if (isSuccess === false) {
     return (
       <>
-        <CommonHeader active="/detail" />
+        <CommonHeader/>
         <Div>
           <Spinner style={{}} animation="border" role="status">
             <span className="sr-only">Loading...</span>
@@ -84,7 +84,7 @@ const Detail = () => {
     );
   } else {
     let kindProduct = '';
-    if (isTop == 0) kindProduct = '상의';
+    if (isTop==='true') kindProduct = '상의';
     else kindProduct = '하의';
 
     const numbers = productInfo.optionList[0].values;
@@ -96,7 +96,7 @@ const Detail = () => {
     ));
     return (
       <>
-        <CommonHeader active="/detail" />
+        <CommonHeader/>
         <Banner />
         <Container fluid="md">
           <MarginBottom />
@@ -135,7 +135,7 @@ const Detail = () => {
   }
 };
 
-export { Detail };
+export default Detail;
 
 const Div = styled.div`
   display: flex;
