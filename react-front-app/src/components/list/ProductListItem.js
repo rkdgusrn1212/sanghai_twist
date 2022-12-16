@@ -1,6 +1,7 @@
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { BsCartCheckFill } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
 import styles from './ProductListItem.module.css';
 import { useMemo } from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
@@ -20,13 +21,10 @@ const ProductListItem = ({ product, isTop }) => {
           <img src={product.image.high} alt="product" />
         </Col>
         <Col className={styles.id}>
-          <a
-            className={styles.a}
-            href={process.env.PUBLIC_URL + '/detail/' + product.code+'/'+isTop}
-          >
+          <Link className={styles.a} to={process.env.PUBLIC_URL + '/detail/' + product.code + '/' + isTop}>
             {' '}
             {product.name}{' '}
-          </a>
+          </Link>
         </Col>
         <Col className={styles.price}>
           <Row className={styles.price2}>{convertedPrice}원~</Row>

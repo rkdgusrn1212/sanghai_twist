@@ -43,6 +43,9 @@
 }
 
 .a {
-  text-decoration-line: none !important;
-  color: lightslategrey !important;
+  text-decoration-line: none;
+  color: #778899
+}
+.a:hover {
+  color: #afb9c4;
 }
