@@ -41,6 +41,7 @@ CRA를 기반으로한 리엑트앱으로 구성.
 
   - 메인 페이지
   
+  ![상하의 트위스트 - Chrome 2022-12-16 18-04-58](https://user-images.githubusercontent.com/18836863/208063195-efcb3d41-b36d-40f8-9edf-acb1938abe4e.gif)
   상의, 하의와 관련된 카테고리 목록을 보여줌. 
 
   - 리스트 페이지
