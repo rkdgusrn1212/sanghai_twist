@@ -26,19 +26,13 @@ function SideDetail(props) {
     );
   } else {
     return (
-      <div className="cards">
+      <div className="closet-cards">
         <div className="btnArea">
           <img
             className="btnGo"
             src={Cart}
             style={{ width: '40px' }}
             onClick={moveShoppingmall}
-          />
-          <img
-            className="btnDel"
-            src={Trash}
-            style={{ width: '40px' }}
-            onClick={deleteStorage}
           />
         </div>
         <img src={productInfo.image} style={{ width: '250px' }} />
@@ -49,3 +43,9 @@ function SideDetail(props) {
 }
 
 export default SideDetail;
+/** <img
+            className="btnDel"
+            src={Trash}
+            style={{ width: '40px' }}
+            onClick={deleteStorage}
+          /> */

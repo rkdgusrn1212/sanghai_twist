@@ -6,6 +6,7 @@ const routes = require('./routes');
 
 const port = 8080;
 
+//개발 설정
 app.use(
   cors({
     origin: [
