@@ -28,8 +28,15 @@ const MinorCategory = ({ category, delay }) => {
 
   const navigate = useNavigate();
   const handleClick = useCallback(() => {
-    navigate(process.env.PUBLIC_URL + '/list/' + category.code + '/I/1');
-  }, [navigate, category.code]);
+    navigate(
+      process.env.PUBLIC_URL +
+        '/list/' +
+        category.code +
+        '/' +
+        category.top +
+        '/I/1',
+    );
+  }, [navigate, category.code, category.top]);
 
   return (
     <Card

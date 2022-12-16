@@ -9,3 +9,7 @@ yarn-error.log*
 
 #config의 보안성 파일들 제외
 /config/
+
+# yarn npm lock 파일 제외
+yarn.lock
+package-lock.json

@@ -3,7 +3,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Spinner from 'react-bootstrap/Spinner';
 import ProductListItem from './ProductListItem';
 
-const ProductList = ({ code, pg, srt }) => {
+const ProductList = ({ code, pg, srt, isTop }) => {
   const { categoryInfo } = new useGetCategoryInfo({
     code: code,
     pg: pg,
@@ -21,7 +21,7 @@ const ProductList = ({ code, pg, srt }) => {
   return (
     <ListGroup>
       {categoryInfo.products.items.map((item) => (
-        <ProductListItem key={item.code} product={item} />
+        <ProductListItem key={item.code} product={item} isTop={isTop}/>
       ))}
     </ListGroup>
   );

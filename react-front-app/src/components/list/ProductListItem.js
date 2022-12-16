@@ -6,7 +6,7 @@ import { useMemo } from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
 import convertPrice from './convertPrice';
 
-const ProductListItem = ({ product }) => {
+const ProductListItem = ({ product, isTop }) => {
   //숫자 컴마 제거
   const convertedPrice = useMemo(
     () => convertPrice(product.price),
@@ -22,7 +22,7 @@ const ProductListItem = ({ product }) => {
         <Col className={styles.id}>
           <a
             className={styles.a}
-            href={process.env.PUBLIC_URL + '/detail/' + product.code}
+            href={process.env.PUBLIC_URL + '/detail/' + product.code+'/'+isTop}
           >
             {' '}
             {product.name}{' '}

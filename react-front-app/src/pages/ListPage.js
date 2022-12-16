@@ -16,7 +16,7 @@ import CommonHeader from '../components/common/CommonHeader';
 import CommonFooter from '../components/common/CommonFooter';
 
 const ListPage = () => {
-  const { code, pg, srt } = useParams();
+  const { code, pg, srt, isTop } = useParams();
   const [pgList, setPgList] = useState([]);
   const { categoryInfo, isSuccess } = new useGetCategoryInfo({
     code: code,
@@ -45,11 +45,13 @@ const ListPage = () => {
         '/list/' +
         code +
         '/' +
+        isTop +
+        '/' +
         srt +
         '/' +
         (parseInt(pg) + 1),
     );
-  }, [navigate, code, srt, pg]);
+  }, [navigate, isTop, code, srt, pg]);
 
   if (isSuccess) {
     return (
@@ -71,32 +73,44 @@ const ListPage = () => {
               상품 <span className={styles.font}>{convertedCount}</span>개
             </Col>
             <Col sm={6}>
-              <a className={styles.a} href={`/stwist/list/${code}/CP/1`}>
+              <a
+                className={styles.a}
+                href={`/stwist/list/${code}/${isTop}/CP/1`}
+              >
                 {' '}
                 인기순{' '}
               </a>
               <TriggerExample />|
-              <a className={styles.a} href={`/stwist/list/${code}/L/1`}>
+              <a
+                className={styles.a}
+                href={`/stwist/list/${code}/${isTop}/L/1`}
+              >
                 {' '}
                 낮은 가격순{' '}
               </a>
               |{' '}
-              <a className={styles.a} href={`/stwist/list/${code}/A/1`}>
+              <a
+                className={styles.a}
+                href={`/stwist/list/${code}/${isTop}/A/1`}
+              >
                 {' '}
                 누적 판매순{' '}
               </a>
               |{' '}
-              <a className={styles.a} href={`/stwist/list/${code}/I/1`}>
+              <a
+                className={styles.a}
+                href={`/stwist/list/${code}/${isTop}/I/1`}
+              >
                 {' '}
                 많은 리뷰순{' '}
               </a>
               |{' '}
-              <a className={styles.a} href={`/stwist/list/${code}/G/1`}>
+              <a className={styles.a} href={`/stwist/list/${code}/${isTop}/G/1`}>
                 {' '}
                 높은 평가순{' '}
               </a>
               |{' '}
-              <a className={styles.a} href={`/stwist/list/${code}/H/1`}>
+              <a className={styles.a} href={`/stwist/list/${code}/${isTop}/H/1`}>
                 {' '}
                 높은 가격순{' '}
               </a>{' '}
@@ -108,7 +122,13 @@ const ListPage = () => {
 
             <hr className={styles.a} />
             {pgList.map((pgNum) => (
-              <ProductList key={pgNum} code={code} srt={srt} pg={pgNum} />
+              <ProductList
+                key={pgNum}
+                code={code}
+                srt={srt}
+                pg={pgNum}
+                isTop={isTop}
+              />
             ))}
             <div className={styles.buttons}>
               {' '}
