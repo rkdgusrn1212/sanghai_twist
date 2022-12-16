@@ -31,26 +31,26 @@
   align-items: flex-start;
   justify-content: space-around;
 }
-.mb-3 {
+.closet-mb-3 {
   width: 300px;
 }
-.cards {
+.closet-cards {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.Side {
+.closetSide {
   float: right;
   width: 350px;
   height: 800px;
   overflow: scroll;
 }
 
-.btn {
+.closet-btn {
   width: 50px;
   float: left;
 }
-.title {
+.closet-title {
   text-align: center;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -72,7 +72,7 @@
   border-radius: 30px;
 }
 
-.form-label {
+.closet-form-label {
   width: 300px;
   text-align: center;
 }

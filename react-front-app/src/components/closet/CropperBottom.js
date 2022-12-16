@@ -79,7 +79,7 @@ function Cropper(props) {
         <Col>
           <Form.Group
             controlId="formFile"
-            className="mb-3"
+            className="closet-mb-3"
             onChange={handleFileChange}
             accept="image/*"
           >

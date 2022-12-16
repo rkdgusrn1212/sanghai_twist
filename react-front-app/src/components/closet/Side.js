@@ -61,7 +61,7 @@ const Side = (props) => {
           <button>저장</button> 
         </form>
       </div> */}
-      <div className="Side">
+      <div className="closetSide">
         <Tabs defaultActiveKey="home" id="sideDetail" className="mb-4" fill>
           <Tab eventKey="home" title="상의">
             {JSON.parse(localStorage.getItem('topList')) &&
@@ -69,7 +69,7 @@ const Side = (props) => {
                 <Card
                   key={elem}
                   id={elem}
-                  className="cards"
+                  className="closet-cards"
                   onClick={() => sendTElem(elem)}
                 >
                   <SideDetail elem={elem} />
@@ -82,7 +82,7 @@ const Side = (props) => {
                 <Card
                   key={elem}
                   id={elem}
-                  className="cards"
+                  className="closet-cards"
                   onClick={() => sendBElem(elem)}
                 >
                   <SideDetail elem={elem} />

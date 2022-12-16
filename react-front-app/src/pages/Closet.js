@@ -25,7 +25,7 @@ function Closet() {
     <div className="Clset">
       <CommonHeader active="/closet" />
       <Container fluid="md">
-        <h1 className="title">나의 옷장</h1>
+        <h1 className="closet-title">나의 옷장</h1>
         <HowTo />
         <Row xs={1} md={2}>
           <Col md={7}>
