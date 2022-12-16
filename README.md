@@ -1,6 +1,6 @@
 # sanghai_twist
 
-KOSA, Douzone, Mini proj. 3(React), Team 4, 강현구, 류정수, 김상연, 전지현
+KOSA, Douzone, Mini proj. 3(React), Team 4, <sup>팀장</sup> 강현구, <sup>팀원</sup> 류정수, 김상연, 전지현
 
 ## 프로젝트 기간
 
@@ -102,3 +102,18 @@ CRA를 기반으로한 리엑트앱으로 구성.
 - 출력된 상의와 하의로 상-하의 매칭 기능을 제공하여 사용자는 코디를 한눈에 볼 수 있다.
 
 - 사용법 버튼을 클릭하면 링크를 통해 사용법을 볼 수 있다.
+
+
+## 프로젝트 실행하기
+
+### 11번가 API키 설정
+
+1. 11번가 OpenAPI 홈에서 회원가입을 한다.
+2. 가입과 동시에 API 키 발급
+3. 프로젝트_루트/config/apiKey.json 경로로 파일을 하나 만들고
+4. { "key":발급받은키 } 를 쓰고 저장한다.
+
+### 호스팅 서버 주소 설정
+
+/react-front-app/src/server.json 파일을 { "host":호스팅_서버주소 }로 변경.
+
