@@ -5,6 +5,6 @@ const front = require('./front');
 
 router.use('/stwist-api', api);
 
-router.use('/stwist',front);
+router.use('/stwist', front);
 
 module.exports = router;
