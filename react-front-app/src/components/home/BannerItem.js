@@ -1,7 +1,8 @@
 import Carousel from 'react-bootstrap/Carousel';
 import Badge from 'react-bootstrap/Badge';
 import styled from 'styled-components';
-import { useState, useEffect, forwardRef } from 'react';
+import { useState, useEffect, forwardRef, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { useGetCategoryInfo } from '../../hooks';
@@ -60,7 +61,7 @@ const BannerItem = ({ category, ...prop }, ref) => {
           ))}
         </div>
         <Carousel.Caption ref={ref}>
-          <BannerItemTitle>
+          <BannerItemTitle href={'#' + category.code}>
             <Badge style={{ color: 'inherit' }} pill bg="dark">
               {content.name}
             </Badge>

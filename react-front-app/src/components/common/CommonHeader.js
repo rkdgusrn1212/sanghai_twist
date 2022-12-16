@@ -24,7 +24,7 @@ const CommonHeader = ({ active }) => {
         active: false,
       },
     };
-    result[active].active = true;
+    active && (result[active].active = true);
     return result;
   }, [active]);
 
