@@ -95,3 +95,16 @@
 .youTube {
   width: 1000px;
 }
+.btnGo {
+  margin: 5px;
+  width: 70px;
+  float: left;
+}
+.btnDel {
+  margin: 5px;
+  width: 70px;
+  float: right;
+}
+.btnArea {
+  width: 100%;
+}
