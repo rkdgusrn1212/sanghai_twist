@@ -15,7 +15,6 @@
     "iconv-lite": "^0.6.3",
     "nodemon": "^2.0.20",
     "path": "^0.12.7",
-    "styled-components": "^5.3.6",
     "xml-js": "^1.6.11"
   },
   "scripts": {
