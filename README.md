@@ -142,7 +142,7 @@ LocalStorage에 저장된 하의와 상의 상품 데이터 또는 사용자의 
 
 ![list-sort](https://user-images.githubusercontent.com/18836863/208285179-5c40b144-174c-41d3-9a16-b2cfdf6eebd8.gif)
 
-![list-pagination](https://user-images.githubusercontent.com/18836863/208284937-b8bf9728-8581-4f20-9def-383287a9d1c9.gif)
+![list-scroll](https://user-images.githubusercontent.com/18836863/208292938-3f5a616b-4659-4e8f-aaf9-e9ac86840d47.gif)
 
 - react-slick 라이브러리를 통해 배너에 변화하는 텍스트 값을 출력한다.
 
