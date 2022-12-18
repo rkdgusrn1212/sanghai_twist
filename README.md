@@ -105,6 +105,10 @@ CRA를 기반으로한 리엑트앱으로 구성.
 
 ### 3.1.2. 리스트 페이지
 
+![list-sort](https://user-images.githubusercontent.com/18836863/208285179-5c40b144-174c-41d3-9a16-b2cfdf6eebd8.gif)
+
+![list-pagination](https://user-images.githubusercontent.com/18836863/208284937-b8bf9728-8581-4f20-9def-383287a9d1c9.gif)
+
 - react-slick 라이브러리를 통해 배너에 변화하는 텍스트 값을 출력한다.
 
 - 현재 위치하고 있는 카테고리 상품의 이름, 이미지, 가격 정보 등을 출력한다.
