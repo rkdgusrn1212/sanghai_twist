@@ -67,7 +67,7 @@ CRA를 기반으로한 리엑트앱으로 구성.
 
 #### 3.1.1.1. 메인 베너
 
-![main-banner](https://user-images.githubusercontent.com/18836863/208283887-f0569520-b3bb-482d-a530-de8538087bb8.gif)
+![main-banner](https://user-images.githubusercontent.com/18836863/208285371-b68b3938-93c5-403d-9de9-266df2188dcf.gif)
 
 - 해당 카테고리 바로가기 제공
 
