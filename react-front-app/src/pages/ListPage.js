@@ -8,7 +8,7 @@ import Stack from 'react-bootstrap/Stack';
 import TriggerExample from '../components/list/popover';
 import Banner from '../components/list/BannerFun';
 import styles from './list.module.css';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useGetCategoryInfo } from '../hooks';
 import ProductList from '../components/list/ProductList';
 import convertPrice from '../components/list/convertPrice';
@@ -24,12 +24,9 @@ const ListPage = () => {
     srt: srt,
   });
 
+  //시작 페이지 지정
   useEffect(() => {
-    const tPgList = [];
-    for (let i = 0; i < pg; i++) {
-      tPgList.push(i);
-    }
-    setPgList(tPgList);
+    setPgList([pg]);
   }, [pg]);
 
   const convertedCount = useMemo(
@@ -37,21 +34,9 @@ const ListPage = () => {
     [categoryInfo],
   );
 
-  const navigate = useNavigate();
-
   const handleNextClick = useCallback(() => {
-    navigate(
-      process.env.PUBLIC_URL +
-        '/list/' +
-        code +
-        '/' +
-        isTop +
-        '/' +
-        srt +
-        '/' +
-        (parseInt(pg) + 1),
-    );
-  }, [navigate, isTop, code, srt, pg]);
+    setPgList((prev) => [...prev, prev[prev.length - 1] + 1]);
+  }, [setPgList]);
 
   if (isSuccess) {
     return (
@@ -105,12 +90,18 @@ const ListPage = () => {
                 많은 리뷰순{' '}
               </a>
               |{' '}
-              <a className={styles.a} href={`/stwist/list/${code}/${isTop}/G/1`}>
+              <a
+                className={styles.a}
+                href={`/stwist/list/${code}/${isTop}/G/1`}
+              >
                 {' '}
                 높은 평가순{' '}
               </a>
               |{' '}
-              <a className={styles.a} href={`/stwist/list/${code}/${isTop}/H/1`}>
+              <a
+                className={styles.a}
+                href={`/stwist/list/${code}/${isTop}/H/1`}
+              >
                 {' '}
                 높은 가격순{' '}
               </a>{' '}
